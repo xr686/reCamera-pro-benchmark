@@ -7,7 +7,6 @@
 
 下文所有 YOLO 数据均来自 [`native/`](./native/) 中的原生 C++ 基准程序：RGA 直接把 letterbox
 结果写入零拷贝的 RKNN 输入缓冲、int8 输出原地解码、NPU/CPU 频率锁定到最高档。原有的
-Python（`rknn-toolkit-lite2`）YOLO 推理脚本已移除；OCR 与语音转文字仍使用各自的 Python 脚本。
 
 ---
 

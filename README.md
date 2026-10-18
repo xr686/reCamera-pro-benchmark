@@ -7,8 +7,7 @@ Comprehensive RKNN model benchmarking for the **Seeed reCamera Pro** (Rockchip R
 
 All YOLO numbers below come from the native C++ harness in [`native/`](./native/) — RGA
 preprocessing into a zero-copy RKNN input buffer, int8 outputs decoded in place, and the
-NPU/CPU clocks pinned to their top OPPs. The earlier Python (`rknn-toolkit-lite2`) YOLO
-path was removed; OCR and STT still use their Python inference scripts.
+NPU/CPU clocks pinned to their top OPPs.
 
 ---
 
