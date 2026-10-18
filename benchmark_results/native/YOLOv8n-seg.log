@@ -1,0 +1,27 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolov8n-seg_640x640_W8A8.rknn
+[heads] 3 stride(s), task=seg, input=640x640, outputs=13
+  stride  8 grid 80x80 box=c64@0 cls=c80@0 obj coef
+  stride 16 grid 40x40 box=c64@0 cls=c80@0 obj coef
+  stride 32 grid 20x20 box=c64@0 cls=c80@0 obj coef
+  proto  c32 160x160
+
+================ BENCHMARK ================
+model      : models/yolov8n-seg_640x640_W8A8.rknn
+task       : seg
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.82 ms  min   1.76
+npu        : avg  19.90 ms  min  18.85  (steady-state 50.3 fps)
+postprocess: avg   2.88 ms  min   2.49
+total      : avg  24.59 ms  min  23.34  max  26.66
+fps        : 40.7
+detections : 4 (best raw score 0.870)
+  [0] person         0.757 box(1062,258,1279,582)
+  [1] person         0.744 box(79,258,365,609)
+  [2] person         0.686 box(354,267,544,575)
+  [3] person         0.314 box(1,369,116,580)
+===========================================

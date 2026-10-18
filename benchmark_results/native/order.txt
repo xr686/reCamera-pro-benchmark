@@ -1,0 +1,17 @@
+det|YOLO26n
+det|YOLO11n
+det|YOLO11s
+det|YOLOv8n
+det|YOLOv8s
+pose|YOLO26n-pose
+pose|YOLO11n-pose
+pose|YOLOv8n-pose
+seg|YOLO26n-seg
+seg|YOLO11n-seg
+seg|YOLOv8n-seg
+obb|YOLO26n-obb
+obb|YOLO11n-obb
+obb|YOLOv8n-obb
+cls|YOLO26n-cls
+cls|YOLO11n-cls
+depth|YOLO26n-depth

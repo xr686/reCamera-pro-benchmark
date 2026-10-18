@@ -35,10 +35,10 @@ Note: OBB is trained on DOTA aerial imagery, so street-level images produce low 
 
 | Metric | Value |
 |--------|-------|
-| Avg latency | 40.17 ms |
-| Min latency | 28.76 ms |
-| Max latency | 70.01 ms |
-| FPS | 24.9 |
+| Avg latency | 16.81 ms |
+| Min latency | 16.06 ms |
+| Max latency | 19.54 ms |
+| FPS | 59.5 |
 | Model size | 4.26 MB |
 
 At conf=0.25: 0 detections (expected for non-aerial images)
@@ -52,12 +52,26 @@ At conf=0.05: 13 "small-vehicle" detections (low confidence)
 python convert_to_rknn.py
 ```
 
-### Inference (on device)
+### Benchmark (on device)
+```bash
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-obb
+```
+
+## Native C++ Benchmark (RV1126B)
+
+The Python `infer.py` path in this directory was replaced by the native harness in
+[`native/`](../../native/): RGA letterboxes straight into a zero-copy RKNN input
+buffer, the int8 outputs are decoded in place, and the NPU/CPU clocks are pinned to
+their top OPPs.
+
+| Model | Pre (ms) | NPU (ms) | Post (ms) | End-to-end (ms) | FPS |
+|-------|---------:|---------:|----------:|----------------:|----:|
+| YOLOv8n-obb | 1.79 | 14.91 | 0.12 | **16.81** | **59.5** |
+
+`--runs 100 --warmup 20`, input frame from `assets/bus.jpg`, NPU pinned to 950 MHz, CPU governor `performance`. Full matrix: `benchmark_results/native/results.md`.
 
 ```bash
-python3 infer.py \
-    --model /userdata/benchmark/models/yolo/yolov8_obb/yolov8n-obb_W8A8.rknn \
-    --image /userdata/benchmark/test_bus.jpg \
-    --output result_bus.jpg \
-    --conf 0.05
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-obb
 ```

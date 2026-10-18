@@ -1,0 +1,22 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolov8n-obb_640x640_W8A8.rknn
+[heads] 3 stride(s), task=obb, input=640x640, outputs=6
+  stride  8 grid 80x80 box=c64@0 cls=c15@64 angle
+  stride 16 grid 40x40 box=c64@0 cls=c15@64 angle
+  stride 32 grid 20x20 box=c64@0 cls=c15@64 angle
+
+================ BENCHMARK ================
+model      : models/yolov8n-obb_640x640_W8A8.rknn
+task       : obb
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.79 ms  min   1.74
+npu        : avg  14.91 ms  min  14.11  (steady-state 67.1 fps)
+postprocess: avg   0.12 ms  min   0.11
+total      : avg  16.81 ms  min  16.06  max  19.54
+fps        : 59.5
+detections : 0 (best raw score 0.133)
+===========================================

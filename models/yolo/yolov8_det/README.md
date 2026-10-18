@@ -7,23 +7,23 @@
 - **Source**: Rockchip Model Zoo (`yolov8n.onnx`)
 - **Quantization**: INT8 W8A8
 - **Input**: 640x640, RGB, uint8
-- **Performance**: 48.5ms / 20.6 FPS
-- **Test Result**: 4 detections (3 persons + 1 bus)
+- **Performance**: 17.80ms / 56.2 FPS (native C++ harness, pinned clocks)
+- **Test Result**: 5 detections (4 persons + 1 bus)
 
 ### YOLOv8s (Small)
 - **Model**: `yolov8s_W8A8.rknn` (12 MB)
 - **Source**: Rockchip Model Zoo (`yolov8s.onnx`)
 - **Quantization**: INT8 W8A8
 - **Input**: 640x640, RGB, uint8
-- **Performance**: 69.1ms / 14.5 FPS
-- **Test Result**: 5 detections (4 persons + 1 bus)
+- **Performance**: 32.56ms / 30.7 FPS (native C++ harness, pinned clocks)
+- **Test Result**: 4 detections (3 persons + 1 bus)
 
 ## Files
 
 - `*.onnx` - Original ONNX models from Rockchip Zoo
 - `*_W8A8.rknn` - Converted INT8 RKNN models for RV1126B
 - `convert_to_rknn.py` - Conversion script
-- `infer.py` - Inference script with DFL post-processing
+- `../../native/bench_native` — native C++ inference/benchmark harness (repo `native/`)
 - `calibration_200.txt` - Calibration image list (200 COCO images)
 - `result_bus.jpg` - YOLOv8n inference result
 - `result_bus_s.jpg` - YOLOv8s inference result
@@ -41,14 +41,9 @@ python convert_to_rknn.py \
 
 ### Run Inference on Device
 ```bash
-python infer.py \
-  --model yolov8n_W8A8.rknn \
-  --image /path/to/test.jpg \
-  --output result.jpg \
-  --conf 0.25 \
-  --nms 0.45 \
-  --runs 10 \
-  --warmup 3
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n
+./scripts/bench_native.sh --only YOLOv8s
 ```
 
 ## Post-processing
@@ -69,8 +64,8 @@ The inference script performs:
 
 | Model | Size | FPS | Latency | Detections |
 |-------|------|-----|---------|------------|
-| YOLOv8n | 4.2 MB | 20.6 | 48.5ms | 4 |
-| YOLOv8s | 12 MB | 14.5 | 69.1ms | 5 |
+| YOLOv8n | 4.2 MB | 56.2 | 17.80ms | 5 |
+| YOLOv8s | 12 MB | 30.7 | 32.56ms | 4 |
 
 ## Notes
 
@@ -78,3 +73,23 @@ The inference script performs:
 - Input should be uint8 [0-255], normalized internally
 - Calibration used 200 COCO val2017 images
 - Tested on reCamera Pro (RV1126B) with NPU
+
+## Native C++ Benchmark (RV1126B)
+
+The Python `infer.py` path in this directory was replaced by the native harness in
+[`native/`](../../native/): RGA letterboxes straight into a zero-copy RKNN input
+buffer, the int8 outputs are decoded in place, and the NPU/CPU clocks are pinned to
+their top OPPs.
+
+| Model | Pre (ms) | NPU (ms) | Post (ms) | End-to-end (ms) | FPS |
+|-------|---------:|---------:|----------:|----------------:|----:|
+| YOLOv8n | 1.82 | 15.30 | 0.68 | **17.80** | **56.2** |
+| YOLOv8s | 1.83 | 30.05 | 0.67 | **32.56** | **30.7** |
+
+`--runs 100 --warmup 20`, input frame from `assets/bus.jpg`, NPU pinned to 950 MHz, CPU governor `performance`. Full matrix: `benchmark_results/native/results.md`.
+
+```bash
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n
+./scripts/bench_native.sh --only YOLOv8s
+```

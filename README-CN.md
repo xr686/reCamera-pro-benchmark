@@ -5,6 +5,10 @@
 
 对 Seeed reCamera Pro（Rockchip RV1126B，2 GB RAM，aarch64）进行了全面的 RKNN 模型基准测试。所有模型均转换为 RKNN 格式，并在设备上使用真实的 NPU 推理进行基准测试。
 
+下文所有 YOLO 数据均来自 [`native/`](./native/) 中的原生 C++ 基准程序：RGA 直接把 letterbox
+结果写入零拷贝的 RKNN 输入缓冲、int8 输出原地解码、NPU/CPU 频率锁定到最高档。原有的
+Python（`rknn-toolkit-lite2`）YOLO 推理脚本已移除；OCR 与语音转文字仍使用各自的 Python 脚本。
+
 ---
 
 ## 快速入门
@@ -15,9 +19,12 @@ git lfs install
 git clone https://github.com/Seeed-Projects/recamera-pro-benchmark.git
 cd recamera-pro-benchmark
 
-# 部署任意模型到设备
-scp models/yolo/yolov8_det/yolov8n_640x640_W8A8.rknn root@192.168.3.207:/userdata/benchmark/
-scp models/yolo/yolov8_det/infer.py root@192.168.3.207:/userdata/benchmark/
+# 在设备上跑完整个 YOLO 矩阵（交叉编译 + 推送 + 基准测试）
+DEVICE_IP=192.168.42.1 ./scripts/bench_native.sh
+
+# 也可以只跑单个模型或单个任务族
+./scripts/bench_native.sh --only YOLOv8n
+./scripts/bench_native.sh --only det
 ```
 
 ---
@@ -56,8 +63,16 @@ recamera-pro-benchmark/
 │   └── zipformer/                      # 语音转文字
 │       └── (encoder + decoder + joiner, FP16)
 │
+├── native/                             # C++ 基准测试程序（YOLO 推理路径）
+│   ├── bench_native.cpp                # 零拷贝 RKNN + RGA + int8 解码，覆盖全部 YOLO 任务
+│   ├── fetch_libs.sh                   # 获取交叉编译所需的 rknn_api.h / librknnrt.so / RGA
+│   ├── CMakeLists.txt                  # aarch64 交叉构建，RPATH = /oem/usr/lib
+│   └── build.sh                        # 使用 reCamera Pro SDK 工具链交叉编译
+│
 ├── benchmark_results/                  # 基准测试数据与日志
+│   └── native/                         # 每个模型的日志 + results.md / results.csv
 ├── scripts/                            # 转换与基准测试脚本
+│   └── bench_native.sh                 # 构建 + 推送 + 跑完整个 YOLO 矩阵
 ├── assets/                             # 测试图像
 ├── calibration/                        # 校准数据集
 └── doc/                                # 参考文档
@@ -68,7 +83,7 @@ recamera-pro-benchmark/
 - `*_optimized.onnx` — 优化后的 ONNX（如适用）
 - `*_W8A8.rknn` / `*_FP16.rknn` — 转换后的 RKNN 模型
 - `convert_to_rknn.py` — ONNX → RKNN 转换脚本
-- `infer.py` — 设备推理脚本（图像 + 摄像头模式）
+- `infer.py` — 设备推理脚本（仅 OCR / 语音；YOLO 使用 `native/bench_native`）
 - `calibration_200.txt` — 校准图像列表
 - `result_*.jpg` — 示例推理结果
 - `README.md` — 模型专项文档
@@ -79,52 +94,68 @@ recamera-pro-benchmark/
 
 **25 个 RKNN 模型**，覆盖 3 个系列、9 个任务类别，全部在 RV1126B NPU 上进行基准测试。
 
+延迟为完整的串行单帧耗时——**预处理**（RGA letterbox 写入零拷贝输入缓冲）+ **NPU**
+（一次 `rknn_run`）+ **后处理**（解码、NMS、掩码/深度图），测试参数 `--runs 100 --warmup 20`，
+FPS = 1000 / 延迟。原始日志见 `benchmark_results/native/results.md`。
+
 ### 目标检测
 
-| 模型 | 输入 | 精度 | 延迟 (ms) | FPS | 功耗 (W) |
-|------|------|------|-----------|-----|----------|
-| YOLO26n | 640×640 | INT8 | 37.48 | 26.7 | 5.2 |
-| YOLO11n | 640×640 | INT8 | 38.70 | 25.8 | 5.2 |
-| YOLO11s | 640×640 | INT8 | 58.50 | 17.1 | 5.2 |
-| YOLOv8n | 640×640 | INT8 | 36.35 | 27.5 | 5.1 |
-| YOLOv8s | 640×640 | INT8 | 37.25 | 26.8 | 5.1 |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n | 640×640 | INT8 | 1.81 | 18.87 | 0.49 | **21.17** | **47.2** |
+| YOLO11n | 640×640 | INT8 | 1.79 | 17.67 | 0.65 | **20.11** | **49.7** |
+| YOLO11s | 640×640 | INT8 | 1.81 | 33.54 | 0.73 | **36.08** | **27.7** |
+| YOLOv8n | 640×640 | INT8 | 1.82 | 15.30 | 0.68 | **17.80** | **56.2** |
+| YOLOv8s | 640×640 | INT8 | 1.83 | 30.05 | 0.67 | **32.56** | **30.7** |
 
 ### 姿态估计
 
-| 模型 | 输入 | 精度 | 延迟 (ms) | FPS | 功耗 (W) |
-|------|------|------|-----------|-----|----------|
-| YOLO26n-pose | 640×640 | INT8 | 37.31 | 26.8 | 5.2 |
-| YOLO11n-pose | 640×640 | INT8 | 38.19 | 26.2 | 5.6 |
-| YOLOv8n-pose | 640×640 | INT8 | 36.92 | 27.1 | 5.3 |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n-pose | 640×640 | INT8 | 1.80 | 20.06 | 0.24 | **22.10** | **45.2** |
+| YOLO11n-pose | 640×640 | INT8 | 1.77 | 18.05 | 0.41 | **20.23** | **49.4** |
+| YOLOv8n-pose | 640×640 | INT8 | 1.81 | 15.74 | 0.33 | **17.89** | **55.9** |
 
 ### 实例分割
 
-| 模型 | 输入 | 精度 | 延迟 (ms) | FPS | 功耗 (W) |
-|------|------|------|-----------|-----|----------|
-| YOLO26n-seg | 640×640 | INT8 | 55.11 | 18.1 | 5.4 |
-| YOLO11n-seg | 640×640 | INT8 | 54.59 | 18.3 | 5.4 |
-| YOLOv8n-seg | 640×640 | INT8 | 61.89 | 16.2 | 5.4 |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n-seg | 640×640 | INT8 | 1.82 | 24.17 | 3.65 | **29.63** | **33.7** |
+| YOLO11n-seg | 640×640 | INT8 | 1.81 | 22.11 | 4.12 | **28.04** | **35.7** |
+| YOLOv8n-seg | 640×640 | INT8 | 1.82 | 19.90 | 2.88 | **24.59** | **40.7** |
+
+后处理含每个检测框的掩码合成（框内 `sigmoid(coef · proto)`）。
 
 ### 旋转边界框 (OBB)
 
-| 模型 | 输入 | 精度 | 延迟 (ms) | FPS | 功耗 (W) |
-|------|------|------|-----------|-----|----------|
-| YOLO26n-obb | 640×640 | INT8 | 33.57 | 29.8 | 5.2 |
-| YOLO11n-obb | 640×640 | INT8 | 34.40 | 29.1 | 5.3 |
-| YOLOv8n-obb | 640×640 | INT8 | 35.56 | 28.1 | 5.3 |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n-obb | 640×640 | INT8 | 1.80 | 18.33 | 0.13 | **20.27** | **49.3** |
+| YOLO11n-obb | 640×640 | INT8 | 1.81 | 16.98 | 0.13 | **18.92** | **52.9** |
+| YOLOv8n-obb | 640×640 | INT8 | 1.79 | 14.91 | 0.12 | **16.81** | **59.5** |
+
+OBB 模型基于 DOTA 航拍数据训练，街景 `bus.jpg` 在 conf 0.25 下检出 0 个目标（最高类别分
+仅 0.01–0.13）；解码与旋转 NMS 每帧仍照常执行。
 
 ### 图像分类
 
-| 模型 | FPS | 延迟 | 大小 |
-|------|-----|------|------|
-| yolo26n-cls | 152.2 | 6.6 ms | 3.65 MB |
-| yolo11n-cls | 65.7 | 15.2 ms | — |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n-cls | 224×224 | INT8 | 1.74 | 2.16 | 0.02 | **3.93** | **254.3** |
+| YOLO11n-cls | 224×224 | FP16 输入 | 1.79 | 9.97 | 0.03 | **11.78** | **84.9** |
 
 ### 深度估计
 
-| 模型 | 输入 | 精度 | 延迟 (ms) | FPS | 功耗 (W) |
-|------|------|------|-----------|-----|----------|
-| YOLO26n-depth | 640×640 | INT8 | 99.16 | 10.1 | 5.2 |
+| 模型 | 输入 | 精度 | 预处理 (ms) | NPU (ms) | 后处理 (ms) | 延迟 (ms) | FPS |
+|------|------|-----|-----------:|--------:|-----------:|----------:|----:|
+| YOLO26n-depth | 640×640 | INT8 | 1.73 | 84.80 | 2.32 | **88.85** | **11.3** |
+
+后处理为米制深度解码（`exp(clip(raw, ±10)) · e^cal_b`，用 256 项 int8 查找表完成）
+加上一次 RGA 放大，把归一化后的深度图放大到源帧分辨率。
+
+> **YOLO 表格不再给出功耗列。** 板子上没有功耗遥测节点（只有 SARADC 与 IMU），此前
+> 5.0–5.6 W 的数据是 Python 测试时用外部 USB-C 功率计测得的，无法在此按模型复现。
+> 持续 NPU 负载下整板功耗仍在 5 W 左右。
 
 ### OCR (PPOCRv4)
 
@@ -165,29 +196,44 @@ python3 convert_to_rknn.py
 
 使用 RKNN-Toolkit2，`target_platform='rv1126b'`，200 张校准图像。
 
-### 部署与运行（设备端）
+### 构建与运行原生基准程序
 
 ```bash
-# 推送模型和脚本到设备
-scp models/yolo/yolov8_det/yolov8n_640x640_W8A8.rknn root@192.168.3.207:/userdata/benchmark/
-scp models/yolo/yolov8_det/infer.py root@192.168.3.207:/userdata/benchmark/
+# 1. 交叉编译（需要 reCamera Pro SDK 工具链；可用 RECAMERA_SDK_ROOT 覆盖路径）
+cd native && ./build.sh          # 首次运行会先执行 fetch_libs.sh 拉取头文件与库
 
-# 图像推理（保存标注结果）
-ssh root@192.168.3.207
-python3 /userdata/benchmark/infer.py \
-    --model /userdata/benchmark/yolov8n_640x640_W8A8.rknn \
-    --image /userdata/benchmark/bus.jpg \
-    --output /userdata/benchmark/result_bus.jpg
-
-# 摄像头推理（20 次运行，5 次预热，输出平均延迟）
-python3 /userdata/benchmark/infer.py \
-    --model /userdata/benchmark/yolov8n_640x640_W8A8.rknn
+# 2. 在仓库根目录：构建 + 推送二进制/测试帧/模型 + 跑完全部模型
+./scripts/bench_native.sh                       # 每模型 100 次运行 / 20 次预热
+RUNS=30 WARMUP=10 ./scripts/bench_native.sh     # 快速跑一遍
+./scripts/bench_native.sh --only seg            # 只跑某个任务族
+./scripts/bench_native.sh --report-only         # 用已有日志重新生成 results.md
 ```
 
-### infer.py 模式
+也可以直接在设备上调用二进制：
 
-- **图像模式**（指定 `--input`）：执行推理，在最后一帧绘制结果，保存到设备并拉取回主机。
-- **摄像头模式**（不指定 `--input`）：从 `/dev/video13`（1920×1080 NV12）读取，运行 20 次迭代（5 次预热），输出平均推理速度。不绘制帧。
+```bash
+scp native/build/bench_native root@192.168.42.1:/userdata/benchmark/
+ssh root@192.168.42.1 \
+  'cd /userdata/benchmark && LD_LIBRARY_PATH=/oem/usr/lib ./bench_native \
+     --model models/yolov8n_640x640_W8A8.rknn --image bench.rgb --runs 100 --warmup 20'
+```
+
+### bench_native 参数
+
+| 参数 | 说明 |
+|------|------|
+| `--model <file.rknn>` | 待测模型（必填） |
+| `--image <raw.rgb>` | 原始 RGB888 输入帧（默认 1280×720，见 `--src`） |
+| `--src WxH` | 原始帧分辨率，默认 `1280x720` |
+| `--runs N` / `--warmup N` | 计时次数 / 预热次数（默认 100 / 20） |
+| `--conf F` / `--nms F` | 检测阈值（默认 0.25 / 0.45） |
+| `--task T` | 强制指定 `det`/`pose`/`seg`/`obb`/`cls`/`depth`（默认按输出头自动识别） |
+| `--dump-io` | 打印输入/输出张量属性后退出 |
+| `--trace-post` | 后处理分阶段耗时（深度模型） |
+
+一个二进制覆盖全部六种 YOLO 任务：DFL/直接回归框、类别与 objectness 通道、关键点、
+掩码系数、角度、proto 等输出头都由张量名与形状自动推断，YOLOv8 / YOLO11 / YOLO26
+无需任何按模型定制的代码。
 
 ---
 
@@ -232,7 +278,11 @@ python3 models/yolo/tools/optimize_yolo26_onnx.py --model yolo26n.onnx --output 
 | 组件 | 版本 | 用途 |
 |------|------|------|
 | 主机操作系统 | Ubuntu 22.04 (x86_64) / WSL2 | 构建与转换主机 |
-| Python | 3.10 | 转换与推理脚本的运行时 |
+| Python | 3.10 | 转换脚本 + OCR/语音推理 |
+| reCamera Pro SDK | v1.0.10 | `native/` 的 aarch64 交叉工具链与 sysroot（`RECAMERA_SDK_ROOT`） |
+| CMake | ≥ 3.16 | 原生基准程序构建 |
+| ffmpeg | 任意 | 把 `assets/bus.jpg` 解码为原始 RGB888 测试帧 |
+| sshpass | 任意 | `scripts/bench_native.sh` 的设备推送 |
 | Conda 环境 | `recamera-rknn-2.3.2` (miniforge3) | ONNX → RKNN 转换 |
 | RKNN-Toolkit2 | **2.3.2** | 模型转换，`target_platform='rv1126b'` |
 | ONNX | ≥ 1.14 | ONNX 图检查与优化 |
@@ -279,66 +329,74 @@ python3 scripts/compare_onnx_rknn.py \
 
 ### 2. 设备端推理测试（功能正确性）
 
-部署模型并运行单次图像推理，验证检测质量：
+`bench_native` 会打印最后一帧的解码结果，即为正确性检查：
 
 ```bash
-# 推送到设备
-scp yolov8n_640x640_W8A8.rknn infer.py bus.jpg root@192.168.3.207:/userdata/benchmark/
-
-# SSH 到设备并运行图像模式
-ssh root@192.168.3.207
-python3 /userdata/benchmark/infer.py \
-    --model /userdata/benchmark/yolov8n_640x640_W8A8.rknn \
-    --input /userdata/benchmark/bus.jpg \
-    --output /userdata/benchmark/result_bus.jpg
+./scripts/bench_native.sh --only YOLOv8n
+cat benchmark_results/native/YOLOv8n.log
 ```
 
-脚本会打印检测数量、类别、置信度，并写入带绘制框的 `result_bus.jpg`。将图像拉回主机进行目视验证。
+预期输出结尾（bus.jpg → 4 个人 + 1 辆公交车）：
+
+```
+detections : 5 (best raw score 0.898)
+  [0] person         0.808 box(1059,256,1278,581)
+  [1] person         0.712 box(82,241,379,607)
+  ...
+```
+
+框坐标已还原到源帧坐标系（解码后撤销 letterbox）。姿态模型附加 `+17kpt`，OBB 模型附加
+`rot`，分割会为每个检测合成掩码，分类打印 top-5，深度打印米制 min/mean/max。
 
 ### 3. NPU 基准测试（性能测量）
 
-运行摄像头模式以获得稳定的计时结果——无绘制开销，20 次迭代，5 次预热：
-
 ```bash
-# 在设备上，不指定 --input → 通过 /dev/video13 的摄像头模式
-python3 /userdata/benchmark/infer.py \
-    --model /userdata/benchmark/yolov8n_640x640_W8A8.rknn \
-    --runs 20 --warmup 5
+./scripts/bench_native.sh            # 完整矩阵，100 次运行 / 20 次预热
 ```
 
-预期输出：
+每个模型的预期输出：
 
 ```
-Warmup: 5 iterations
-Benchmark: 20 iterations
-Avg latency: 36.35 ms
-Min latency: 34.21 ms
-Max latency: 62.17 ms
-FPS: 27.5
+================ BENCHMARK ================
+model      : models/yolov8n_640x640_W8A8.rknn
+task       : det
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.82 ms  min   1.75
+npu        : avg  15.30 ms  min  14.48  (steady-state 65.4 fps)
+postprocess: avg   0.68 ms  min   0.60
+total      : avg  17.80 ms  min  17.00  max  21.48
+fps        : 56.2
+detections : 5 (best raw score 0.898)
+===========================================
 ```
 
-如需扩展基准测试（30 秒运行，完整矩阵），使用项目级运行器：
-
-```bash
-python3 scripts/bench_runner.py /userdata/benchmark/yolov8n_640x640_W8A8.rknn \
-    --duration 30 --warmup 10
-```
+`scripts/bench_runner.py` 保留给语音（Zipformer）与 OCR 流水线，它们仍使用 Python 运行时。
 
 ### 通过 / 失败标准
 
 - **转换通过**：`rknn.export_rknn()` 返回 0，文件大小符合预期。
 - **精度通过**：在 `bus.jpg` 上 ONNX 与 RKNN 的余弦相似度 ≥ 0.99；在 conf ≥ 0.3 时检测结果差异不超过 ±1 个目标。
-- **性能通过**：延迟在上表数值的 ±5% 以内。
+- **性能通过**：延迟在上表数值的 ±5% 以内（须锁频；NPU 若停留在 `dvfs` 调频会慢 25–35%）。
 
 ---
 
 ## 测试方法论
 
-- **迭代次数**：每模型 20 次运行，5 次预热不计入
-- **延迟**：端到端处理时间——预处理、NPU 推理（`rknn.inference`）与后处理（适用时使用 RGA 加速）
+- **测试程序**：`native/bench_native.cpp`，aarch64 交叉编译，链接 Seeed 认证的
+  RKNN Runtime 2.3.2（`librknnrt.so`，由 `native/fetch_libs.sh` 校验 SHA-256）
+- **迭代次数**：每模型 100 次运行，20 次预热不计入
+- **延迟**：单帧串行耗时——RGA letterbox 预处理 + 一次 `rknn_run` + 完整后处理
+  （解码、NMS、掩码 / 深度图）
 - **FPS**：`1000 / avg_latency_ms`
+- **频率**：NPU devfreq 锁到 `userspace` @ 950 MHz，CPU governor 为 `performance`
+  （1608 MHz），VENC/VPU 为 `performance`——每次运行前由程序自动设置
+- **零拷贝**：输入是 `rknn_create_mem` 缓冲，RGA 直接写入（声明为 uint8 NHWC，由运行时
+  映射到模型自身的 int8/fp16 输入）；输出同样零拷贝绑定，并保持原生 int8
+- **解码**：候选筛选直接在 int8 上做（量化 scale 为正，排序不变），只有超过阈值的少量
+  网格才反量化；分割与深度采用通道在外的顺序访存
+- **输入帧**：`assets/bus.jpg` 解码为 1280×720 原始 RGB888 帧，再由 RGA 做 letterbox
 - **INT8 校准**：200 张真实图像（COCO val2017 / ImageNet val），非随机噪声
-- **输入类型**：INT8 模型使用 uint8，FP16 模型使用 float16
 - **转换**：RKNN-Toolkit2 流水线，`target_platform='rv1126b'`
 
 ### YOLO 代际对比
@@ -347,11 +405,48 @@ python3 scripts/bench_runner.py /userdata/benchmark/yolov8n_640x640_W8A8.rknn \
 
 | 任务 | 最佳模型 | FPS | 优势 |
 |------|---------|-----|------|
-| 目标检测 | yolov8n | 27.5 | 导出成熟、算子融合充分 |
-| 姿态估计 | yolov8n-pose | 27.1 | 关键点解码优化 |
-| 旋转边界框 | yolo26n-obb | 29.8 | 直接角度回归 |
-| 实例分割 | yolo11n-seg | 18.3 | 简化掩码原型 |
-| 图像分类 | yolo26n-cls | 152.2 | 轻量骨干网络 |
+| 目标检测 | YOLOv8n | 56.2 | Zoo 导出，DFL 头融合充分 |
+| 姿态估计 | YOLOv8n-pose | 55.9 | 单个 65 通道输出头，张量数最少 |
+| 旋转边界框 | YOLOv8n-obb | 59.5 | 框与类别拼接为单个输出头 |
+| 实例分割 | YOLOv8n-seg | 40.7 | proto/系数开销最小 |
+| 图像分类 | YOLO26n-cls | 254.3 | 轻量骨干，NPU 仅 2.2 ms |
+| 深度估计 | YOLO26n-depth | 11.3 | 本仓库唯一的单目深度模型 |
+
+### 为什么原生路径比原来的 Python 数据快
+
+此前的表格由未锁频的 Python `rknn-toolkit-lite2` 产生。相同模型、相同设备、相同输入：
+
+| 模型 | Python (ms / FPS) | 原生 C++ (ms / FPS) | 加速比 |
+|------|------------------:|--------------------:|-------:|
+| YOLO26n | 37.48 / 26.7 | 21.17 / 47.2 | 1.77× |
+| YOLO11n | 38.70 / 25.8 | 20.11 / 49.7 | 1.92× |
+| YOLO11s | 58.50 / 17.1 | 36.08 / 27.7 | 1.62× |
+| YOLOv8n | 36.35 / 27.5 | 17.80 / 56.2 | 2.04× |
+| YOLOv8s | 37.25 / 26.8 | 32.56 / 30.7 | 1.14× |
+| YOLO26n-pose | 37.31 / 26.8 | 22.10 / 45.2 | 1.69× |
+| YOLO11n-pose | 38.19 / 26.2 | 20.23 / 49.4 | 1.89× |
+| YOLOv8n-pose | 36.92 / 27.1 | 17.89 / 55.9 | 2.06× |
+| YOLO26n-seg | 55.11 / 18.1 | 29.63 / 33.7 | 1.86× |
+| YOLO11n-seg | 54.59 / 18.3 | 28.04 / 35.7 | 1.95× |
+| YOLOv8n-seg | 61.89 / 16.2 | 24.59 / 40.7 | 2.52× |
+| YOLO26n-obb | 33.57 / 29.8 | 20.27 / 49.3 | 1.66× |
+| YOLO11n-obb | 34.40 / 29.1 | 18.92 / 52.9 | 1.82× |
+| YOLOv8n-obb | 35.56 / 28.1 | 16.81 / 59.5 | 2.12× |
+| YOLO26n-cls | 6.57 / 152.2 | 3.93 / 254.3 | 1.67× |
+| YOLO11n-cls | 15.20 / 65.7 | 11.78 / 84.9 | 1.29× |
+| YOLO26n-depth | 99.16 / 10.1 | 88.85 / 11.3 | 1.12× |
+
+耗时差距的来源，按影响从大到小：
+
+1. **频率**——NPU 停留在 `dvfs` 会慢 25–35%，锁到 950 MHz 是白捡的性能。
+2. **输出反量化**——`rknn-toolkit-lite2` 每次调用都把全部 int8 输出转成新的 float32
+   NumPy 数组（640×640 下约 5 ms）；原生路径保持 int8，只反量化通过阈值筛选的少量网格。
+3. **输入拷贝**——Python 路径要先构造 uint8 NumPy 数组再拷进运行时缓冲；现在 RGA 直接
+   写入零拷贝的 `rknn_create_mem` 输入。
+4. **NumPy 后处理**——Python 层循环、`.astype(np.uint8)` 往返、逐 stride 转置都要几毫秒；
+   同样的解码在 C++ 里约 0.1–0.7 ms。
+5. **语言开销**——解释器的每次调用开销确实存在（约 0.5 ms），但相比上面四项很小；
+   主要收益来自零拷贝 + int8 + 锁频，而不仅仅是换成了 C++。
 
 ---
 

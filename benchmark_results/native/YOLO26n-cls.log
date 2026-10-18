@@ -1,0 +1,19 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolo26n-cls_224x224_W8A8.rknn
+[heads] 0 stride(s), task=cls, input=224x224, outputs=1
+
+================ BENCHMARK ================
+model      : models/yolo26n-cls_224x224_W8A8.rknn
+task       : cls
+input      : 224x224
+runs       : 100 (warmup 20)
+preprocess : avg   1.74 ms  min   1.59
+npu        : avg   2.16 ms  min   1.84  (steady-state 462.3 fps)
+postprocess: avg   0.02 ms  min   0.02
+total      : avg   3.93 ms  min   3.47  max   4.90
+fps        : 254.3
+top5       : #654=0.1307 #908=0.1307 #408=0.1110 #717=0.0941 #627=0.0678
+===========================================

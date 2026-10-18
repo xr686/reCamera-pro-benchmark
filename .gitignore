@@ -43,3 +43,8 @@ check[0-9]*.onnx
 # Local-only files (not published)
 AGENTS.md
 assets/bus_result.jpg
+
+# Native (C++) benchmark build artifacts and locally fetched vendor libraries
+native/build/
+native/libs/
+benchmark_results/native/*.rgb

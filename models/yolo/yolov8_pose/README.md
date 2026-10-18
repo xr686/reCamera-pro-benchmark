@@ -41,10 +41,10 @@ Sigmoid is applied in Python during post-processing.
 
 | Metric | Value |
 |--------|-------|
-| Avg latency | 45.87 ms |
-| Min latency | 34.29 ms |
-| Max latency | 60.86 ms |
-| FPS | 21.8 |
+| Avg latency | 17.89 ms |
+| Min latency | 16.96 ms |
+| Max latency | 20.05 ms |
+| FPS | 55.9 |
 | Model size | 4.88 MB |
 
 ### Detection Comparison
@@ -67,13 +67,10 @@ for partially occluded persons due to INT8 quantization.
 python convert_to_rknn.py
 ```
 
-### Inference (on device)
-
+### Benchmark (on device)
 ```bash
-python3 infer.py \
-    --model /userdata/benchmark/models/yolo/yolov8_pose/yolov8n-pose_W8A8.rknn \
-    --image /userdata/benchmark/test_bus.jpg \
-    --output result_bus.jpg
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-pose
 ```
 
 ### Options
@@ -82,3 +79,21 @@ python3 infer.py \
 - `--nms 0.45` — NMS IoU threshold
 - `--runs 10` — benchmark iterations
 - `--warmup 3` — warmup iterations
+
+## Native C++ Benchmark (RV1126B)
+
+The Python `infer.py` path in this directory was replaced by the native harness in
+[`native/`](../../native/): RGA letterboxes straight into a zero-copy RKNN input
+buffer, the int8 outputs are decoded in place, and the NPU/CPU clocks are pinned to
+their top OPPs.
+
+| Model | Pre (ms) | NPU (ms) | Post (ms) | End-to-end (ms) | FPS |
+|-------|---------:|---------:|----------:|----------------:|----:|
+| YOLOv8n-pose | 1.81 | 15.74 | 0.33 | **17.89** | **55.9** |
+
+`--runs 100 --warmup 20`, input frame from `assets/bus.jpg`, NPU pinned to 950 MHz, CPU governor `performance`. Full matrix: `benchmark_results/native/results.md`.
+
+```bash
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-pose
+```

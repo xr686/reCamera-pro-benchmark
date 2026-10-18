@@ -36,10 +36,10 @@ Plus proto: `[1, 32, 160, 160]` — proto mask feature map
 
 | Metric | Value |
 |--------|-------|
-| Avg latency | 77.88 ms |
-| Min latency | 61.37 ms |
-| Max latency | 96.58 ms |
-| FPS | 12.8 |
+| Avg latency | 24.59 ms |
+| Min latency | 23.34 ms |
+| Max latency | 26.66 ms |
+| FPS | 40.7 |
 | Model size | 4.61 MB |
 
 ### Detection Comparison
@@ -63,11 +63,26 @@ Plus proto: `[1, 32, 160, 160]` — proto mask feature map
 python convert_to_rknn.py
 ```
 
-### Inference (on device)
+### Benchmark (on device)
+```bash
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-seg
+```
+
+## Native C++ Benchmark (RV1126B)
+
+The Python `infer.py` path in this directory was replaced by the native harness in
+[`native/`](../../native/): RGA letterboxes straight into a zero-copy RKNN input
+buffer, the int8 outputs are decoded in place, and the NPU/CPU clocks are pinned to
+their top OPPs.
+
+| Model | Pre (ms) | NPU (ms) | Post (ms) | End-to-end (ms) | FPS |
+|-------|---------:|---------:|----------:|----------------:|----:|
+| YOLOv8n-seg | 1.82 | 19.90 | 2.88 | **24.59** | **40.7** |
+
+`--runs 100 --warmup 20`, input frame from `assets/bus.jpg`, NPU pinned to 950 MHz, CPU governor `performance`. Full matrix: `benchmark_results/native/results.md`.
 
 ```bash
-python3 infer.py \
-    --model /userdata/benchmark/models/yolo/yolov8_seg/yolov8n-seg_W8A8.rknn \
-    --image /userdata/benchmark/test_bus.jpg \
-    --output result_bus.jpg
+# from the repo root: cross-compiles, stages and benchmarks on the device
+./scripts/bench_native.sh --only YOLOv8n-seg
 ```

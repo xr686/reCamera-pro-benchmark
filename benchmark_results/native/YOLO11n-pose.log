@@ -1,0 +1,26 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolo11n-pose_640x640_W8A8.rknn
+[heads] 3 stride(s), task=pose, input=640x640, outputs=9
+  stride  8 grid 80x80 box=c64@0 cls=c0@0 kpt obj
+  stride 16 grid 40x40 box=c64@0 cls=c0@0 kpt obj
+  stride 32 grid 20x20 box=c64@0 cls=c0@0 kpt obj
+
+================ BENCHMARK ================
+model      : models/yolo11n-pose_640x640_W8A8.rknn
+task       : pose
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.77 ms  min   1.72
+npu        : avg  18.05 ms  min  17.18  (steady-state 55.4 fps)
+postprocess: avg   0.41 ms  min   0.38
+total      : avg  20.23 ms  min  19.41  max  22.94
+fps        : 49.4
+detections : 4 (best raw score 0.883)
+  [0] person         0.883 box(353,262,543,573) +17kpt
+  [1] person         0.883 box(73,245,376,607) +17kpt
+  [2] person         0.755 box(1056,240,1280,583) +17kpt
+  [3] person         0.466 box(0,270,121,584) +17kpt
+===========================================

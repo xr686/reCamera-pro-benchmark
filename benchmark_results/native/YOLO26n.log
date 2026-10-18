@@ -1,0 +1,27 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolo26n_640x640_W8A8.rknn
+[heads] 3 stride(s), task=det, input=640x640, outputs=6
+  stride  8 grid 80x80 box=c4@0 cls=c80@0
+  stride 16 grid 40x40 box=c4@0 cls=c80@0
+  stride 32 grid 20x20 box=c4@0 cls=c80@0
+
+================ BENCHMARK ================
+model      : models/yolo26n_640x640_W8A8.rknn
+task       : det
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.81 ms  min   1.75
+npu        : avg  18.87 ms  min  17.98  (steady-state 53.0 fps)
+postprocess: avg   0.49 ms  min   0.43
+total      : avg  21.17 ms  min  20.27  max  24.41
+fps        : 47.2
+detections : 6 (best raw score 0.872)
+  [0] person         0.872 box(357,265,543,569)
+  [1] person         0.860 box(1053,261,1280,583)
+  [2] person         0.838 box(78,247,347,598)
+  [3] person         0.772 box(0,371,123,581)
+  [4] bus            0.742 box(14,152,1278,503)
+===========================================

@@ -1,0 +1,20 @@
+[clocks] 22000000.npu locked to 950000000
+ Hz
+[clocks] cpu governors -> performance
+rga_api version 1.10.5_[11]
+[model] models/yolo26n-depth_640x640_W8A8.rknn
+[heads] 0 stride(s), task=depth, input=640x640, outputs=1
+[depth] 160x160 metric map -> 1280x720 via RGA (direct)
+
+================ BENCHMARK ================
+model      : models/yolo26n-depth_640x640_W8A8.rknn
+task       : depth
+input      : 640x640
+runs       : 100 (warmup 20)
+preprocess : avg   1.73 ms  min   1.64
+npu        : avg  84.80 ms  min  82.57  (steady-state 11.8 fps)
+postprocess: avg   2.32 ms  min   2.22
+total      : avg  88.85 ms  min  86.48  max  95.51
+fps        : 11.3
+depth      : mean 4.928 m  min 1.668  max 16.093  (160x160 metric map -> 1280x720 uint8)
+===========================================
