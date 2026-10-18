@@ -6,7 +6,7 @@
 对 Seeed reCamera Pro（Rockchip RV1126B，2 GB RAM，aarch64）进行了全面的 RKNN 模型基准测试。所有模型均转换为 RKNN 格式，并在设备上使用真实的 NPU 推理进行基准测试。
 
 下文所有 YOLO 数据均来自 [`native/`](./native/) 中的原生 C++ 基准程序：RGA 直接把 letterbox
-结果写入零拷贝的 RKNN 输入缓冲、int8 输出原地解码、NPU/CPU 频率锁定到最高档。原有的
+结果写入零拷贝的 RKNN 输入缓冲、int8 输出原地解码、NPU/CPU 频率锁定到最高档。
 
 ---
 
