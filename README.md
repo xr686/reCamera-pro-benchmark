@@ -418,44 +418,6 @@ Best-performing model per task (end-to-end latency, including pre/post-processin
 | Classification | YOLO26n-cls | 254.3 | Lightweight backbone, 2.2 ms NPU |
 | Depth | YOLO26n-depth | 11.3 | Only monocular depth model in the set |
 
-### Why the native path is faster than the old Python numbers
-
-The previous tables were produced by `rknn-toolkit-lite2` in Python with unpinned clocks.
-Same models, same device, same input:
-
-| Model | Python (ms / FPS) | Native C++ (ms / FPS) | Speedup |
-|-------|------------------:|----------------------:|--------:|
-| YOLO26n | 37.48 / 26.7 | 21.17 / 47.2 | 1.77× |
-| YOLO11n | 38.70 / 25.8 | 20.11 / 49.7 | 1.92× |
-| YOLO11s | 58.50 / 17.1 | 36.08 / 27.7 | 1.62× |
-| YOLOv8n | 36.35 / 27.5 | 17.80 / 56.2 | 2.04× |
-| YOLOv8s | 37.25 / 26.8 | 32.56 / 30.7 | 1.14× |
-| YOLO26n-pose | 37.31 / 26.8 | 22.10 / 45.2 | 1.69× |
-| YOLO11n-pose | 38.19 / 26.2 | 20.23 / 49.4 | 1.89× |
-| YOLOv8n-pose | 36.92 / 27.1 | 17.89 / 55.9 | 2.06× |
-| YOLO26n-seg | 55.11 / 18.1 | 29.63 / 33.7 | 1.86× |
-| YOLO11n-seg | 54.59 / 18.3 | 28.04 / 35.7 | 1.95× |
-| YOLOv8n-seg | 61.89 / 16.2 | 24.59 / 40.7 | 2.52× |
-| YOLO26n-obb | 33.57 / 29.8 | 20.27 / 49.3 | 1.66× |
-| YOLO11n-obb | 34.40 / 29.1 | 18.92 / 52.9 | 1.82× |
-| YOLOv8n-obb | 35.56 / 28.1 | 16.81 / 59.5 | 2.12× |
-| YOLO26n-cls | 6.57 / 152.2 | 3.93 / 254.3 | 1.67× |
-| YOLO11n-cls | 15.20 / 65.7 | 11.78 / 84.9 | 1.29× |
-| YOLO26n-depth | 99.16 / 10.1 | 88.85 / 11.3 | 1.12× |
-
-Where the time went, in decreasing order of impact:
-
-1. **Clocks** — leaving the NPU on `dvfs` costs 25–35 %; pinning it to 950 MHz is free speed.
-2. **Output dequantisation** — `rknn-toolkit-lite2` converts every int8 output tensor to a
-   fresh float32 NumPy array on each call (~5 ms at 640×640). The native path keeps int8 and
-   only dequantises the few hundred cells that survive the threshold.
-3. **Input copies** — the Python path built a NumPy uint8 array and copied it into the runtime
-   buffer; RGA now writes straight into the zero-copy `rknn_create_mem` input.
-4. **Post-processing in NumPy** — Python-level loops, `.astype(np.uint8)` round-trips and
-   per-stride transposes cost milliseconds; the same decode is ~0.1–0.7 ms in C++.
-5. **Language overhead** — the per-call interpreter cost is real but small (~0.5 ms) next to
-   the four items above; most of the win is zero-copy + int8 + pinned clocks, not C++ itself.
-
 ---
 
 ## License
