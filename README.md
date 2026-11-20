@@ -1,5 +1,7 @@
 # reCamera Pro RKNN Model Benchmark
 
+**English** · [简体中文](README-CN.md)
+
 [![App benchmarks](https://img.shields.io/badge/app%20configs-270-blue)](#rv1126b-application-benchmarks)
 [![Model directory](https://img.shields.io/badge/model%20directory-25-blue)](./models/)
 [![Device](https://img.shields.io/badge/device-reCamera%20Pro%20(RV1126B)-orange)](https://www.seeedstudio.com/)
@@ -363,8 +365,8 @@ The preview app measured these two VLMs separately. Times below are medians. [VL
 ```bash
 # Clone the repo (with Git LFS for model weights)
 git lfs install
-git clone https://github.com/Seeed-Projects/recamera-pro-benchmark.git
-cd recamera-pro-benchmark
+git clone https://github.com/xr686/reCamera-pro-benchmark.git
+cd reCamera-pro-benchmark
 
 # Benchmark the whole YOLO matrix on the device (cross-compiles, stages, runs)
 DEVICE_IP=192.168.42.1 ./scripts/bench_native.sh
