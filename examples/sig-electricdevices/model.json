@@ -1,0 +1,47 @@
+{
+  "id": "sig-electricdevices",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    96
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        96
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        1.3245476937484568e-10
+      ],
+      "std": [
+        0.994778037071228
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-electricdevices.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "ElectricDevices"
+      ]
+    ],
+    "assets": {
+      "data/ElectricDevices.zip": {
+        "sha256": "0d63e83f7b49e90c7d0bd4bb20320e2b26719da596e0d96de6581bbeecca58d5",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/ElectricDevices.zip"
+      }
+    },
+    "requires": []
+  }
+}

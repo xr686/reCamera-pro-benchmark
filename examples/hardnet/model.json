@@ -1,0 +1,40 @@
+{
+  "id": "hardnet",
+  "input_kind": "image",
+  "sample_shape": [
+    32,
+    32,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        32,
+        32
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/hardnet.onnx",
+    "steps": [
+      [
+        "export_wave3_geometry.py",
+        "{work}",
+        "--model",
+        "hardnet"
+      ]
+    ],
+    "assets": {
+      "data/hardnet.pth": {
+        "url": "https://raw.githubusercontent.com/DagnyT/hardnet/master/pretrained/train_liberty_with_aug/checkpoint_liberty_with_aug.pth",
+        "sha256": "1e9a41b19f1dc93c986e91df9aaf5696d1a777ac1d67498492856a65d6f49c16"
+      }
+    },
+    "requires": []
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "jpeg-level-dct",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        64,
+        64
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/jpeg-level-dct.onnx",
+    "steps": [
+      [
+        "train_camera_quality.py",
+        "{work}",
+        "{imagenette}"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "imagenette"
+    ]
+  }
+}

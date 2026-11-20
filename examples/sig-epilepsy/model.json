@@ -1,0 +1,51 @@
+{
+  "id": "sig-epilepsy",
+  "input_kind": "array",
+  "sample_shape": [
+    3,
+    206
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        1,
+        206
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        0.06977958232164383,
+        -0.29020971059799194,
+        -0.10225673764944077
+      ],
+      "std": [
+        0.9683956503868103,
+        1.0195335149765015,
+        0.512170135974884
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-epilepsy.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Epilepsy"
+      ]
+    ],
+    "assets": {
+      "data/Epilepsy.zip": {
+        "sha256": "8e5ce818a4989e520aa620f3009621692f06c8e8e73d72ee98cc0dbdee7c10c9",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Epilepsy.zip"
+      }
+    },
+    "requires": []
+  }
+}

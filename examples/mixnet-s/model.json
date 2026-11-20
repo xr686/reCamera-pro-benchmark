@@ -1,0 +1,53 @@
+{
+  "id": "mixnet-s",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bicubic",
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/mixnet-s.onnx",
+    "steps": [
+      [
+        "export_wave3_backbone.py",
+        "{work}",
+        "mixnet-s"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/mixnet_s.ft_in1k"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "license_plate_detection_lpd_yunet_2023mar",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        240,
+        320
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/license_plate_detection_lpd_yunet_2023mar.onnx",
+    "steps": [],
+    "assets": {
+      "sources/license_plate_detection_lpd_yunet_2023mar.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/license_plate_detection_yunet/license_plate_detection_lpd_yunet_2023mar.onnx",
+        "sha256": "6d4978a7b6d25514d5e24811b82bfb511d166bdd8ca3b03aa63c1623d4d039c7"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/license_plate_detection_yunet/license_plate_detection_lpd_yunet_2023mar.onnx"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "raisins-qda",
+  "input_kind": "array",
+  "sample_shape": [
+    7
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        7
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "mean": [
+      88957.2109375,
+      434.1110534667969,
+      255.4490509033203,
+      0.7831806540489197,
+      92286.6484375,
+      0.7005130052566528,
+      1171.374755859375
+    ],
+    "std": [
+      40101.68359375,
+      118.3830337524414,
+      50.27828598022461,
+      0.0897376760840416,
+      41832.95703125,
+      0.0536477267742157,
+      276.7796630859375
+    ]
+  },
+  "export": {
+    "graph": "sources/raisins-qda.onnx",
+    "steps": [
+      [
+        "train_field_vectors.py",
+        "{work}",
+        "--domain",
+        "raisins"
+      ]
+    ],
+    "assets": {
+      "data/raisins.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/850/raisin.zip",
+        "sha256": "5d516c040923fd154ecf85e31b6e1b5a096724fa0e68d588c33fb5a2f0c3e5db"
+      }
+    },
+    "requires": []
+  }
+}

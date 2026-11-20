@@ -1,0 +1,34 @@
+{
+  "id": "text_recognition_CRNN_EN_2021sep",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        32,
+        100
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/text_recognition_CRNN_EN_2021sep.onnx",
+    "steps": [],
+    "assets": {
+      "sources/text_recognition_CRNN_EN_2021sep.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/text_recognition_crnn/text_recognition_CRNN_EN_2021sep.onnx",
+        "sha256": "a84b1f6e11a65c2d733cb0cc1f014aae3f99051e3f11447dc282faa678eee544"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/text_recognition_crnn/text_recognition_CRNN_EN_2021sep.onnx"
+}

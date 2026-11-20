@@ -1,0 +1,47 @@
+{
+  "id": "sig-italypowerdemand",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    24
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        24
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -2.3723241149298246e-09
+      ],
+      "std": [
+        0.9789450168609619
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-italypowerdemand.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "ItalyPowerDemand"
+      ]
+    ],
+    "assets": {
+      "data/ItalyPowerDemand.zip": {
+        "sha256": "4b68635dc79855fbdb7787d5dff5bac978fd0448afaa8eb7811dae52d43e5e46",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/ItalyPowerDemand.zip"
+      }
+    },
+    "requires": []
+  }
+}

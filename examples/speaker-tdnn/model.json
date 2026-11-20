@@ -1,0 +1,45 @@
+{
+  "id": "speaker-tdnn",
+  "input_kind": "array",
+  "sample_shape": [
+    16000
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        40,
+        98
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/speaker-tdnn-rv.onnx",
+    "steps": [
+      [
+        "fetch_wave3_audio.py",
+        "{work}",
+        "{esc_index}"
+      ],
+      [
+        "train_wave3_audio.py",
+        "{work}",
+        "{commands}"
+      ],
+      [
+        "lower_speaker_pool.py",
+        "{work}/sources/speaker-tdnn.onnx",
+        "{work}/data/speaker-tdnn-rv.onnx"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "esc_index",
+      "commands"
+    ]
+  }
+}

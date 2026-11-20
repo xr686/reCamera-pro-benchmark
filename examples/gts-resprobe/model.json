@@ -1,0 +1,48 @@
+{
+  "id": "gts-resprobe",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        80,
+        80
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/gts-resprobe.onnx",
+    "steps": [
+      [
+        "train_field_images.py",
+        "{work}",
+        "gts",
+        "{work}"
+      ]
+    ],
+    "assets": {
+      "data/gts-train.zip": {
+        "url": "https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/GTSRB-Training_fixed.zip",
+        "sha256": "df4144942083645bd60b594de348aa6930126c3e0e5de09e39611630abf8455a"
+      },
+      "data/gts-test.zip": {
+        "url": "https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/GTSRB_Final_Test_Images.zip",
+        "sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa"
+      },
+      "data/gts-labels.zip": {
+        "url": "https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/GTSRB_Final_Test_GT.zip",
+        "sha256": "f94e5a7614d75845c74c04ddb26b8796b9e483f43541dd95dd5b726504e16d6d"
+      }
+    },
+    "requires": []
+  }
+}

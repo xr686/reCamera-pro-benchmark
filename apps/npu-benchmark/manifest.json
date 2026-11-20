@@ -1,0 +1,239 @@
+{
+  "manifest_version": 2,
+  "release": {
+    "sequence": 18,
+    "channel": "stable"
+  },
+  "compatibility": {
+    "platform_profile": "rv1126b-linux-gnu-cp311-rknn232-v1",
+    "arch": "aarch64",
+    "python": "==3.11.*",
+    "kit_api": ">=0.2,<1",
+    "sdk_abi": ">=1.3,<2",
+    "rknn_runtime": "==2.3.2"
+  },
+  "python": {
+    "runtime_profile": "recamera-ai-cp311-v1",
+    "isolation": "per-release",
+    "wheels": [],
+    "imports": [
+      "numpy",
+      "cv2"
+    ]
+  },
+  "resources": {
+    "claims": [
+      {
+        "name": "npu.rknn",
+        "mode": "exclusive",
+        "required": true
+      },
+      {
+        "name": "result.publish",
+        "mode": "brokered",
+        "required": true
+      }
+    ],
+    "limits": {
+      "memory_mb": 896,
+      "cpu_percent": 300,
+      "storage_mb": 192,
+      "shutdown_grace_sec": 15
+    }
+  },
+  "permissions": {
+    "sdk": [
+      "npu.infer",
+      "result.publish"
+    ],
+    "filesystem": {
+      "read": [
+        "app",
+        "artifacts",
+        "appdata"
+      ],
+      "write": [
+        "appdata",
+        "tmp"
+      ]
+    },
+    "network": {
+      "listen": [],
+      "outbound": [
+        "configured.outputs"
+      ]
+    }
+  },
+  "health": {
+    "protocol": "kit-health-v1",
+    "startup_timeout_sec": 120,
+    "stabilization_sec": 3,
+    "liveness_interval_sec": 10,
+    "liveness_failures": 3,
+    "restart": {
+      "policy": "never",
+      "max_attempts": 3,
+      "window_sec": 300,
+      "backoff_sec": [
+        1,
+        5,
+        15
+      ]
+    }
+  },
+  "instances": {
+    "max": 1,
+    "config_scope": "app",
+    "data_scope": "app",
+    "endpoint_mode": "allocated"
+  },
+  "id": "npu-benchmark",
+  "name": "NPU Benchmark",
+  "name_zh": "NPU 模型基准测试",
+  "version": "0.8.0",
+  "type": "self-hosted",
+  "entry": "app.py",
+  "author": "reCamera",
+  "description": "Exclusive multi-task benchmarks on RV1126B.",
+  "description_zh": "独占 NPU 测试分类、检测、姿态、分割、识别、跟踪、图像增强与音频模型。",
+  "capabilities": [
+    "output"
+  ],
+  "config_schema": {
+    "groups": [
+      {
+        "key": "benchmark",
+        "title": "Benchmark",
+        "title_zh": "基准测试",
+        "items": [
+          {
+            "key": "benchmark_scope",
+            "type": "select",
+            "apply": "restart",
+            "title": "Benchmark scope",
+            "title_zh": "测试范围",
+            "default": "new_families",
+            "options": [
+              "new_families",
+              "all_installed"
+            ],
+            "option_labels": [
+              "New classification models",
+              "All installed configurations"
+            ],
+            "option_labels_zh": [
+              "新增分类模型",
+              "全部已安装配置"
+            ]
+          },
+          {
+            "key": "model_ids",
+            "type": "string",
+            "apply": "restart",
+            "title": "Model IDs",
+            "title_zh": "模型 ID",
+            "default": "",
+            "help": "A comma-separated list overrides the benchmark scope.",
+            "help_zh": "可填写逗号分隔的模型 ID，优先于测试范围。"
+          }
+        ]
+      }
+    ]
+  },
+  "models": [],
+  "artifacts": [
+    {
+      "id": "resnet18",
+      "kind": "rknn",
+      "source": "bundled",
+      "file": "models/resnet18.rknn",
+      "mount": "models/resnet18.rknn",
+      "sha256": "f2fa482588f04c40fe4d7744a0e31a79d147e4ca7122895b4b2800c23930639f",
+      "size": 23541042,
+      "required": true,
+      "share_scope": "content"
+    },
+    {
+      "id": "shufflenet-v2",
+      "kind": "rknn",
+      "source": "bundled",
+      "file": "models/shufflenet-v2.rknn",
+      "mount": "models/shufflenet-v2.rknn",
+      "sha256": "d6fb74833c8468d07836db60ccbf0bc7efec5bec15e6aee9dfca8b1dcaf7c6ef",
+      "size": 8597362,
+      "required": true,
+      "share_scope": "content"
+    },
+    {
+      "id": "mobilenet-v2",
+      "kind": "rknn",
+      "source": "bundled",
+      "file": "models/mobilenet-v2.rknn",
+      "mount": "models/mobilenet-v2.rknn",
+      "sha256": "a804af0653c78b3f501293bc897ccb3f8af5b329ea3ecd074176866c80c68e8e",
+      "size": 7369586,
+      "required": true,
+      "share_scope": "content"
+    }
+  ],
+  "output": {
+    "contract_version": 2,
+    "sink": "ws",
+    "schema": "results[]{name,task,fps,quality,top1,top5}",
+    "default_channel": [
+      "ws"
+    ],
+    "default_mode": "raw",
+    "fields": [
+      {
+        "name": "fps",
+        "type": "number",
+        "from": "results[].fps",
+        "description": "Serial input units per second"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "from": "results[].name",
+        "description": "Model name"
+      },
+      {
+        "name": "top1",
+        "type": "number",
+        "from": "results[].top1",
+        "description": "Top-1 accuracy (fraction)"
+      },
+      {
+        "name": "top5",
+        "type": "number",
+        "from": "results[].top5",
+        "description": "Top-5 accuracy (fraction)"
+      },
+      {
+        "name": "task",
+        "type": "string",
+        "from": "results[].task",
+        "description": "Benchmark task"
+      },
+      {
+        "name": "quality",
+        "type": "object",
+        "from": "results[].quality",
+        "description": "Metrics on unique labelled inputs"
+      }
+    ],
+    "default_mapping": []
+  },
+  "package": {
+    "exclude": [
+      "tools",
+      "README.md",
+      "BENCHMARK.md",
+      "MULTITASK.md",
+      "FIRMWARE-*.md",
+      "EXTENDED*.md",
+      "FIELD-*.md",
+      "ARCHITECTURES*.md"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "sig-insectwingbeatsound",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    256
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        256
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        1.8451828953658378e-09
+      ],
+      "std": [
+        0.9980449676513672
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-insectwingbeatsound.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "InsectWingbeatSound"
+      ]
+    ],
+    "assets": {
+      "data/InsectWingbeatSound.zip": {
+        "sha256": "1267855b9fe399d47af83e5c5c2a29af5b543d3598b5aef220d62f596a01dafc",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/InsectWingbeatSound.zip"
+      }
+    },
+    "requires": []
+  }
+}

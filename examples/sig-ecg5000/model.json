@@ -1,0 +1,47 @@
+{
+  "id": "sig-ecg5000",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    140
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        140
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        6.811959329944273e-10
+      ],
+      "std": [
+        0.9964221715927124
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-ecg5000.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "ECG5000"
+      ]
+    ],
+    "assets": {
+      "data/ECG5000.zip": {
+        "sha256": "41f6de20ac895e9ce31753860995518951f1ed42a405d0e51c909d27e3b3c5a4",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/ECG5000.zip"
+      }
+    },
+    "requires": []
+  }
+}

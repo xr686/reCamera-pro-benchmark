@@ -1,0 +1,47 @@
+{
+  "id": "sig-meat",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    448
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        448
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -5.676633052509317e-10
+      ],
+      "std": [
+        0.9988833069801331
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-meat.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Meat"
+      ]
+    ],
+    "assets": {
+      "data/Meat.zip": {
+        "sha256": "2a45c20ef4c226a10e18ad36581d7d5cbe9ba12e9b67e6d9d3b091c21a012202",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Meat.zip"
+      }
+    },
+    "requires": []
+  }
+}

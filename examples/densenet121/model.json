@@ -1,0 +1,43 @@
+{
+  "id": "densenet121",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bilinear"
+    }
+  },
+  "export": {
+    "graph": "sources/densenet121.onnx",
+    "steps": [
+      [
+        "export_vision_suite.py",
+        "{work}",
+        "densenet121"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://download.pytorch.org/models/densenet121-a639ec97.pth"
+}

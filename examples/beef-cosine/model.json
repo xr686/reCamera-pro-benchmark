@@ -1,0 +1,48 @@
+{
+  "id": "beef-cosine",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    470
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        470
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        2.164367352008867e-09
+      ],
+      "std": [
+        0.9989355802536011
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/beef-cosine.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Beef"
+      ]
+    ],
+    "assets": {
+      "data/Beef.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Beef.zip",
+        "sha256": "e40a58f3f368cea6155a34ecfa0c28bcda7938c04e1e33f2e814999c0b6b143a"
+      }
+    },
+    "requires": []
+  }
+}

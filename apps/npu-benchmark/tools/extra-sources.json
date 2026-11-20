@@ -1,0 +1,122 @@
+{
+  "data/BasicMotions.zip": {
+    "sha256": "f427609dfe343b1da0dc54ee361f61579e7f18c2a007121740a9f0d90286fac3",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/BasicMotions.zip"
+  },
+  "data/Coffee.zip": {
+    "sha256": "bfba9d67f4a0f2041cb8ba88b60b11f10dab60b670e40b904ac47bd7dfdf4749",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Coffee.zip"
+  },
+  "data/ECG5000.zip": {
+    "sha256": "41f6de20ac895e9ce31753860995518951f1ed42a405d0e51c909d27e3b3c5a4",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/ECG5000.zip"
+  },
+  "data/Earthquakes.zip": {
+    "sha256": "927cfb732988055850a74efa169dfd633bc7f578095c35319bebb83453501bf1",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Earthquakes.zip"
+  },
+  "data/ElectricDevices.zip": {
+    "sha256": "0d63e83f7b49e90c7d0bd4bb20320e2b26719da596e0d96de6581bbeecca58d5",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/ElectricDevices.zip"
+  },
+  "data/Epilepsy.zip": {
+    "sha256": "8e5ce818a4989e520aa620f3009621692f06c8e8e73d72ee98cc0dbdee7c10c9",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Epilepsy.zip"
+  },
+  "data/FaceAll.zip": {
+    "sha256": "a83d38efac3c646a718d1d9bc27346e55c8b05e5543cf8f6bbe9eebbb8ff41e6",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/FaceAll.zip"
+  },
+  "data/FordA.zip": {
+    "sha256": "4d78a72e5165e8da40c51115a8219c9d01978aafac6334ed8dfabd29da359ffb",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/FordA.zip"
+  },
+  "data/Handwriting.zip": {
+    "sha256": "e8a19ce94c82ee76205d441c77928a08ec34f7dcbf3edc11f569055c6ed51a8b",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Handwriting.zip"
+  },
+  "data/InsectWingbeatSound.zip": {
+    "sha256": "1267855b9fe399d47af83e5c5c2a29af5b543d3598b5aef220d62f596a01dafc",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/InsectWingbeatSound.zip"
+  },
+  "data/ItalyPowerDemand.zip": {
+    "sha256": "4b68635dc79855fbdb7787d5dff5bac978fd0448afaa8eb7811dae52d43e5e46",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/ItalyPowerDemand.zip"
+  },
+  "data/Meat.zip": {
+    "sha256": "2a45c20ef4c226a10e18ad36581d7d5cbe9ba12e9b67e6d9d3b091c21a012202",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Meat.zip"
+  },
+  "data/Strawberry.zip": {
+    "sha256": "1293ba770d15817be769958f077cab6f76d65a66465aff80ed393d1e80a71e00",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Strawberry.zip"
+  },
+  "data/Wafer.zip": {
+    "sha256": "06032db83b3f6f3f39ef4b65433061dde9b2593b956caa1ad1ae9ad260a36be4",
+    "url": "https://www.timeseriesclassification.com/aeon-toolkit/Wafer.zip"
+  },
+  "data/dncnn_25.pth": {
+    "sha256": "0451a70de9b672ae037270498fbb1c17a1c1c4403785df586ff65df5b858e5b0",
+    "url": "https://github.com/cszn/KAIR/releases/download/v1.0/dncnn_25.pth"
+  },
+  "data/ffdnet_color_clip.pth": {
+    "sha256": "99a5081e32afdaa25df3ded11aa16447556692e550906caed320db31324af5ce",
+    "url": "https://github.com/cszn/KAIR/releases/download/v1.0/ffdnet_color_clip.pth"
+  },
+  "data/mini_speech_commands.zip": {
+    "sha256": "49650f2341b26d886b46b3f4fb8fed59e30300b17550f1ee4a768b3106cf93a0",
+    "url": "https://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip"
+  },
+  "data/mlsd.tflite": {
+    "sha256": "b17de2b4b4754d563c47b29b4132aceb39d40d079c0b9154ec0932b5292ec11f",
+    "url": "https://raw.githubusercontent.com/navervision/mlsd/master/tflite_models/M-LSD_320_tiny_fp32.tflite"
+  },
+  "data/mosaic.onnx": {
+    "sha256": "fa646dedade881243f8d5a2ceb7de2b93675b21fc24f7482894ac4851a9a0a47",
+    "url": "https://media.githubusercontent.com/media/onnx/models/main/validated/vision/style_transfer/fast_neural_style/model/mosaic-9.onnx"
+  },
+  "data/superpoint.pth": {
+    "sha256": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
+    "url": "https://raw.githubusercontent.com/magicleap/SuperPointPretrainedNetwork/master/superpoint_v1.pth"
+  },
+  "data/superpoint.py": {
+    "sha256": "613706ae7e9ce3fbc2cfe042fc3f37d739838cc2e1dc8ddd08f8ec037765df04",
+    "url": "https://raw.githubusercontent.com/magicleap/SuperPointPretrainedNetwork/master/demo_superpoint.py"
+  },
+  "data/u2netp.onnx": {
+    "sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+    "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx"
+  },
+  "data/xfeat.pt": {
+    "sha256": "0f5187fd7bedd26c7fe6acc9685444493a165a35ecc087b33c2db3627f3ea10b",
+    "url": "https://raw.githubusercontent.com/verlab/accelerated_features/main/weights/xfeat.pt"
+  },
+  "data/xnet.py": {
+    "sha256": "d9a665f18fcea5eaf3e278925e1a92103afcba9051e05b2334f3daa29f411964",
+    "url": "https://raw.githubusercontent.com/verlab/accelerated_features/main/modules/model.py"
+  },
+  "data/zero.pth": {
+    "sha256": "a4395acb874f320375d9704997cef874eaaaaa26a1777ceb29a92b70f74c3612",
+    "url": "https://raw.githubusercontent.com/Li-Chongyi/Zero-DCE/master/Zero-DCE_code/snapshots/Epoch99.pth"
+  },
+  "data/zero.py": {
+    "sha256": "8adcc8b73b5bfdb1b6e5a16e672c59a7f8f664ee21aafc3eea44bb316d4b97f8",
+    "url": "https://raw.githubusercontent.com/Li-Chongyi/Zero-DCE/master/Zero-DCE_code/model.py"
+  },
+  "fixtures/clip-tokenizer/merges.txt": {
+    "sha256": "f526393189112391ce6f9795d4695f704121ce452c3aad1f5335cc41337eba85",
+    "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/merges.txt"
+  },
+  "fixtures/clip-tokenizer/vocab.json": {
+    "sha256": "5047b556ce86ccaf6aa22b3ffccfc52d391ea4accdab9c2f2407da5b742d4363",
+    "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json"
+  },
+  "sources/clip-image.onnx": {
+    "sha256": "981517696b79c0dcd8c3b03564369213ef891f0cc9f7692e0cfa89ab58d471ff",
+    "url": "https://ftrg.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/clip/clip_images.onnx"
+  },
+  "sources/clip-text.onnx": {
+    "sha256": "9cd686c57d874b4f7ec8e539fecc9ac2367c4252be18d662cd7bd23e872fddee",
+    "url": "https://ftrg.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/clip/clip_text.onnx"
+  }
+}

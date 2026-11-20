@@ -1,0 +1,48 @@
+{
+  "id": "trace-cosine",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    275
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        275
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        1.94202764980389e-09
+      ],
+      "std": [
+        0.9981801509857178
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/trace-cosine.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Trace"
+      ]
+    ],
+    "assets": {
+      "data/Trace.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Trace.zip",
+        "sha256": "46fdce1d24e8a1b823c8461b2b9f2b2333c01d4eb55af33e6a8bfd04e41c6a0f"
+      }
+    },
+    "requires": []
+  }
+}

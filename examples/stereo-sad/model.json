@@ -1,0 +1,35 @@
+{
+  "id": "stereo-sad",
+  "input_kind": "array",
+  "sample_shape": [
+    2,
+    96,
+    160
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        2,
+        96,
+        160
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/stereo-sad.onnx",
+    "steps": [
+      [
+        "export_wave3_geometry.py",
+        "{work}",
+        "--model",
+        "stereo-sad"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  }
+}

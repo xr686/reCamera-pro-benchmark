@@ -1,0 +1,55 @@
+{
+  "id": "seeds-qda",
+  "input_kind": "array",
+  "sample_shape": [
+    7
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        7
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "mean": [
+      14.825300216674805,
+      14.546951293945312,
+      0.8705618381500244,
+      5.6261186599731445,
+      3.2546026706695557,
+      3.6569080352783203,
+      5.407907485961914
+    ],
+    "std": [
+      2.973552703857422,
+      1.32829749584198,
+      0.0246509350836277,
+      0.4469248056411743,
+      0.3897393047809601,
+      1.5522079467773438,
+      0.4993150234222412
+    ]
+  },
+  "export": {
+    "graph": "sources/seeds-qda.onnx",
+    "steps": [
+      [
+        "train_field_vectors.py",
+        "{work}",
+        "--domain",
+        "seeds"
+      ]
+    ],
+    "assets": {
+      "data/seeds.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/236/seeds.zip",
+        "sha256": "5033bd71b24592fa70d9b3cc5be02332dc6d03d0b27e6655e6d553f39afab323"
+      }
+    },
+    "requires": []
+  }
+}

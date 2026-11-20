@@ -1,0 +1,36 @@
+{
+  "id": "voc-dominant-plain",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        96,
+        96
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/voc-dominant-plain.onnx",
+    "steps": [
+      [
+        "train_sequence_objects.py",
+        "{work}",
+        "{voc}"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "voc"
+    ]
+  }
+}

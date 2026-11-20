@@ -1,0 +1,34 @@
+{
+  "id": "gghl-dota",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        512,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://huggingface.co/geobase/gghl-oriented-object-detection",
+  "export": {
+    "graph": "sources/gghl-dota.onnx",
+    "requires": [],
+    "steps": [],
+    "assets": {
+      "sources/gghl-dota.onnx": {
+        "url": "https://huggingface.co/geobase/gghl-oriented-object-detection/resolve/143dca13909c6bad6d2a7871f0e7dd110afaa176/onnx/model.onnx",
+        "sha256": "820163d8fa85bc8470dd91bb1365e21cfbf9262f13f17b5b3ceb643d3365911b"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "xception",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        299,
+        299
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 299,
+      "resize": [
+        318
+      ],
+      "interpolation": "bicubic",
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/xception.onnx",
+    "steps": [
+      [
+        "build_architectures.py",
+        "{work}",
+        "--export",
+        "xception"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/xception41p.ra3_in1k"
+}

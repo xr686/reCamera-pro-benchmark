@@ -1,0 +1,34 @@
+{
+  "id": "yolov10n",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://github.com/airockchip/rknn_model_zoo/tree/bad6c7334531becaf90a561988519b7bec34d0ab/examples/yolov10",
+  "export": {
+    "graph": "sources/yolov10n.onnx",
+    "assets": {
+      "sources/yolov10n.onnx": {
+        "url": "https://ftrg.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/yolov10/yolov10n.onnx",
+        "sha256": "4a925bcb01b261ab97955bfe6c0dd5ad2e638f6db13198d4b6602750870603f6"
+      }
+    },
+    "steps": [],
+    "requires": []
+  }
+}

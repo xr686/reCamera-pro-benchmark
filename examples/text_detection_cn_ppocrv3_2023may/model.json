@@ -1,0 +1,34 @@
+{
+  "id": "text_detection_cn_ppocrv3_2023may",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        320,
+        320
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/text_detection_cn_ppocrv3_2023may.onnx",
+    "steps": [],
+    "assets": {
+      "sources/text_detection_cn_ppocrv3_2023may.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/text_detection_ppocr/text_detection_cn_ppocrv3_2023may.onnx",
+        "sha256": "03f550c6b406fda8bf54bd8327815f6c7e2edd98cea02348c93d879254366587"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/text_detection_ppocr/text_detection_cn_ppocrv3_2023may.onnx"
+}

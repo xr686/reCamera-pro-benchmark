@@ -1,0 +1,40 @@
+{
+  "id": "sosnet",
+  "input_kind": "image",
+  "sample_shape": [
+    32,
+    32,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        32,
+        32
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/sosnet.onnx",
+    "steps": [
+      [
+        "export_wave3_geometry.py",
+        "{work}",
+        "--model",
+        "sosnet"
+      ]
+    ],
+    "assets": {
+      "data/sosnet.pth": {
+        "url": "https://raw.githubusercontent.com/yuruntian/SOSNet/master/sosnet-weights/sosnet_32x32_liberty.pth",
+        "sha256": "baa575c55a5d1b7b140206ece4af56b735395409f2bb3c924069faf6a7ededa0"
+      }
+    },
+    "requires": []
+  }
+}

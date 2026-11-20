@@ -1,0 +1,53 @@
+{
+  "id": "dpn68",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bicubic",
+      "mean": [
+        0.48627450980392156,
+        0.4588235294117647,
+        0.40784313725490196
+      ],
+      "std": [
+        0.23482446870963955,
+        0.23482446870963955,
+        0.23482446870963955
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/dpn68.onnx",
+    "steps": [
+      [
+        "export_wave3_backbone.py",
+        "{work}",
+        "dpn68"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/dpn68.mx_in1k"
+}

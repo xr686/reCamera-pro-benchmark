@@ -1,0 +1,45 @@
+{
+  "id": "person_detection_mediapipe_2023mar",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/person_detection_mediapipe_2023mar-clip.onnx",
+    "steps": [
+      [
+        "mediapipe_inputs.py",
+        "{work}/sources/person_detection_mediapipe_2023mar.onnx",
+        "{work}/data/person_detection_mediapipe_2023mar-rv.onnx"
+      ],
+      [
+        "clip_detection_logits.py",
+        "{work}/data/person_detection_mediapipe_2023mar-rv.onnx",
+        "{work}/data/person_detection_mediapipe_2023mar-clip.onnx"
+      ]
+    ],
+    "assets": {
+      "sources/person_detection_mediapipe_2023mar.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/person_detection_mediapipe/person_detection_mediapipe_2023mar.onnx",
+        "sha256": "47fd5599d6fa17608f03e0eb0ae230baa6e597d7e8a2c8199fe00abea55a701f"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/person_detection_mediapipe/person_detection_mediapipe_2023mar.onnx"
+}

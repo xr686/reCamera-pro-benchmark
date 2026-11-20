@@ -1,0 +1,48 @@
+{
+  "id": "oliveoil-randomconv",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    570
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        570
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        8.923268235427884e-10
+      ],
+      "std": [
+        0.9991224408149719
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/oliveoil-randomconv.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "OliveOil"
+      ]
+    ],
+    "assets": {
+      "data/OliveOil.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/OliveOil.zip",
+        "sha256": "eb25894f92858611b641c77f3ce8e1cfca6312dd3945d07b96c392e5dc6b24c6"
+      }
+    },
+    "requires": []
+  }
+}

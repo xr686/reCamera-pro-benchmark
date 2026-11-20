@@ -1,0 +1,34 @@
+{
+  "id": "sent-bnb",
+  "input_kind": "text",
+  "sample_shape": [],
+  "sample_dtype": null,
+  "tensors": [
+    {
+      "shape": [
+        1,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/sent-bnb.onnx",
+    "steps": [
+      [
+        "train_field_vectors.py",
+        "{work}",
+        "--domain",
+        "sent"
+      ]
+    ],
+    "assets": {
+      "data/sentiment.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/331/sentiment+labelled+sentences.zip",
+        "sha256": "afc26626d710899948693e1a61405dce197f57ffa719fa1130d346b4cc095343"
+      }
+    },
+    "requires": []
+  }
+}

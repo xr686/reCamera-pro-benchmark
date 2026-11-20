@@ -1,0 +1,30 @@
+{
+  "id": "yamnet_3s",
+  "input_kind": "array",
+  "sample_shape": [
+    48000
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        48000
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://github.com/airockchip/rknn_model_zoo/tree/bad6c7334531becaf90a561988519b7bec34d0ab/examples/yamnet",
+  "export": {
+    "graph": "sources/yamnet_3s.onnx",
+    "assets": {
+      "sources/yamnet_3s.onnx": {
+        "url": "https://ftrg.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/yamnet/yamnet_3s.onnx",
+        "sha256": "47363761b27c34fe1f9da8177c40589e9714b422e129f3210be730338f8cf72c"
+      }
+    },
+    "steps": [],
+    "requires": []
+  }
+}

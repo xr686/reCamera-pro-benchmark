@@ -1,0 +1,48 @@
+{
+  "id": "car-shapelets",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    577
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        577
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        5.17882048356455e-09
+      ],
+      "std": [
+        0.9991330504417419
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/car-shapelets.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Car"
+      ]
+    ],
+    "assets": {
+      "data/Car.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Car.zip",
+        "sha256": "d1191fd7041816f1483fba9e8cd40c0cfe839d5f1acf1d26126904a735d81b3d"
+      }
+    },
+    "requires": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "object_detection_nanodet_2022nov",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        416,
+        416
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/object_detection_nanodet_2022nov.onnx",
+    "steps": [],
+    "assets": {
+      "sources/object_detection_nanodet_2022nov.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_nanodet/object_detection_nanodet_2022nov.onnx",
+        "sha256": "4b82da9944b88577175ee23a459dce2e26e6e4be573def65b1055dc2d9720186"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_nanodet/object_detection_nanodet_2022nov.onnx"
+}

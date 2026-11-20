@@ -1,0 +1,40 @@
+{
+  "id": "presence-cnn",
+  "input_kind": "array",
+  "sample_shape": [
+    16000
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        40,
+        98
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/presence-cnn.onnx",
+    "steps": [
+      [
+        "fetch_wave3_audio.py",
+        "{work}",
+        "{esc_index}"
+      ],
+      [
+        "train_wave3_audio.py",
+        "{work}",
+        "{commands}"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "esc_index",
+      "commands"
+    ]
+  }
+}

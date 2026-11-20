@@ -1,0 +1,60 @@
+model,id,checkpoint,source,model_card,card_license,rknn_in_repo
+ResNet,resnet18,ResNet-18 IMAGENET1K_V1,https://download.pytorch.org/models/resnet18-f37072fd.pth,,,
+ResNet,resnext50_32x4d,ResNeXt50_32X4D_Weights.IMAGENET1K_V2,https://download.pytorch.org/models/resnext50_32x4d-1a0047aa.pth,,,
+ResNet,skresnet,skresnet18.ra_in1k,https://huggingface.co/timm/skresnet18.ra_in1k,https://huggingface.co/timm/skresnet18.ra_in1k/blob/556ba2012f3470fd43feba5a4841a49827ae3998/README.md,apache-2.0,
+ResNet,resnest,resnest14d.gluon_in1k,https://huggingface.co/timm/resnest14d.gluon_in1k,https://huggingface.co/timm/resnest14d.gluon_in1k/blob/b4997ec7e30ee4b3ecfb21d2282ef477d73fc19c/README.md,apache-2.0,
+MobileNet,mobilenet_v3_small,MobileNet_V3_Small_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth,,,
+MobileNet,mobilenet-v2,MobileNet V2 IMAGENET1K_V1,https://download.pytorch.org/models/mobilenet_v2-b0353104.pth,,,
+MobileNet,mobilenetv4-small,mobilenetv4_conv_small.e1200_r224_in1k,https://huggingface.co/timm/mobilenetv4_conv_small.e1200_r224_in1k,https://huggingface.co/timm/mobilenetv4_conv_small.e1200_r224_in1k/blob/c9f31ac64483d7f0590db9edccb4418392a96eea/README.md,apache-2.0,
+ShuffleNet,shufflenet_v2_x0_5,ShuffleNet_V2_X0_5_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/shufflenetv2_x0.5-f707e7126e.pth,,,
+ShuffleNet,shufflenet-v2,ShuffleNet V2 x1.0 IMAGENET1K_V1,https://download.pytorch.org/models/shufflenetv2_x1-5666bf0f80.pth,,,
+GhostNet,ghostnet,ghostnet_100.in1k,https://huggingface.co/timm/ghostnet_100.in1k,https://huggingface.co/timm/ghostnet_100.in1k/blob/e524c2ee5d5a9412f802ce38ff895aba07b30910/README.md,apache-2.0,models/app-architectures/ghostnet.rknn
+GhostNet,repghost,repghostnet_100.in1k,https://huggingface.co/timm/repghostnet_100.in1k,https://huggingface.co/timm/repghostnet_100.in1k/blob/3c79eee5f138318c2cb58957105b91bb50259b29/README.md,mit,
+RegNet,regnet_x_400mf,RegNet_X_400MF_Weights.IMAGENET1K_V2,https://download.pytorch.org/models/regnet_x_400mf-62229a5f.pth,,,
+RegNet,regnety-004,regnety_004.tv2_in1k,https://huggingface.co/timm/regnety_004.tv2_in1k,https://huggingface.co/timm/regnety_004.tv2_in1k/blob/a4ca85068fcf6325fdf13e83f5d67c18335078a7/README.md,bsd-3-clause,
+ConvNeXt,convnext_tiny,ConvNeXt_Tiny_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/convnext_tiny-983f1562.pth,,,
+ConvNeXt,convnext-atto,convnext_atto.d2_in1k,https://huggingface.co/timm/convnext_atto.d2_in1k,https://huggingface.co/timm/convnext_atto.d2_in1k/blob/435c0a8d02d5b872e90c8cde36887465982cb399/README.md,apache-2.0,
+SqueezeNet,squeezenet1_1,SqueezeNet1_1_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/squeezenet1_1-b8a52dc0.pth,,,
+MNASNet,mnasnet0_5,MNASNet0_5_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/mnasnet0.5_top1_67.823-3ffadce67e.pth,,,
+MobileOne,mobileone-s0,mobileone_s0.apple_in1k,https://huggingface.co/timm/mobileone_s0.apple_in1k,https://huggingface.co/timm/mobileone_s0.apple_in1k/blob/2f1da1a4433b0636bace873cab611c9ee90d40de/README.md,other,
+RepVGG,repvgg-a0,repvgg_a0.rvgg_in1k,https://huggingface.co/timm/repvgg_a0.rvgg_in1k,https://huggingface.co/timm/repvgg_a0.rvgg_in1k/blob/e292d220aa8b811232037f8aa6d6c8c552dbd0c0/README.md,mit,
+EdgeNeXt,edgenext-xxs,edgenext_xx_small.in1k,https://huggingface.co/timm/edgenext_xx_small.in1k,https://huggingface.co/timm/edgenext_xx_small.in1k/blob/e10d04b6e70f33cfb54ebd4bce2ede078f4c9ba2/README.md,mit,
+DenseNet,densenet121,DenseNet121_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/densenet121-a639ec97.pth,,,
+EfficientNet,efficientnet_b0,EfficientNet_B0_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/efficientnet_b0_rwightman-7f5810bc.pth,,,
+Inception,googlenet,GoogLeNet_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/googlenet-1378be20.pth,,,
+Swin Transformer,swin_t,Swin_T_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/swin_t-704ceda3.pth,,,
+ViT,vit_b_32,ViT_B_32_Weights.IMAGENET1K_V1,https://download.pytorch.org/models/vit_b_32-d86f8d99.pth,,,
+MixNet,mixnet-s,mixnet_s.ft_in1k,https://huggingface.co/timm/mixnet_s.ft_in1k,https://huggingface.co/timm/mixnet_s.ft_in1k/blob/94149f6f14da590e98eeaa4dd9867b97a23bd3f4/README.md,apache-2.0,models/app-architectures/mixnet-s.rknn
+ReXNet,rexnet,rexnet_100.nav_in1k,https://huggingface.co/timm/rexnet_100.nav_in1k,https://huggingface.co/timm/rexnet_100.nav_in1k/blob/36dd8f43d1589a7c6c138625f3fde6abde2a61dd/README.md,mit,
+DLA,dla34,dla34.in1k,https://huggingface.co/timm/dla34.in1k,https://huggingface.co/timm/dla34.in1k/blob/f9ff14eefc43f8ddd8064d09648bfdee690b0690/README.md,bsd-3-clause,
+HRNet,hrnet-small,hrnet_w18_small_v2.ms_in1k,https://huggingface.co/timm/hrnet_w18_small_v2.ms_in1k,https://huggingface.co/timm/hrnet_w18_small_v2.ms_in1k/blob/bd1000d6177cb20b3ae43d29524816bbf6c378e3/README.md,mit,
+PP-LCNet,lcnet,lcnet_100.ra2_in1k,https://huggingface.co/timm/lcnet_100.ra2_in1k,https://huggingface.co/timm/lcnet_100.ra2_in1k/blob/3a2ceedadb0ace67bcbfb840a64caeb044dc8008/README.md,apache-2.0,models/app-architectures/lcnet.rknn
+DPN,dpn68,dpn68.mx_in1k,https://huggingface.co/timm/dpn68.mx_in1k,https://huggingface.co/timm/dpn68.mx_in1k/blob/e652eb27a553819f870f33ddd3ee03f6f701ecd8/README.md,apache-2.0,models/app-architectures/dpn68.rknn
+EfficientFormer,efficientformer,efficientformer_l1.snap_dist_in1k,https://huggingface.co/timm/efficientformer_l1.snap_dist_in1k,https://huggingface.co/timm/efficientformer_l1.snap_dist_in1k/blob/8738a58190800aaf5995f453b05f643df453a565/README.md,apache-2.0,models/app-architectures/efficientformer.rknn
+MobileViT,mobilevit-xs,mobilevit_xs.cvnets_in1k,https://huggingface.co/timm/mobilevit_xs.cvnets_in1k,https://huggingface.co/timm/mobilevit_xs.cvnets_in1k/blob/7a989ba56f36ed9f230044306e1e31563132c35e/README.md,other,
+PoolFormer,poolformer,poolformer_s12.sail_in1k,https://huggingface.co/timm/poolformer_s12.sail_in1k,https://huggingface.co/timm/poolformer_s12.sail_in1k/blob/7f922b14752901f7a3c6be4a9c2fc058dc4f1a12/README.md,apache-2.0,models/app-architectures/poolformer.rknn
+VoVNet,vovnet,ese_vovnet19b_dw.ra_in1k,https://huggingface.co/timm/ese_vovnet19b_dw.ra_in1k,https://huggingface.co/timm/ese_vovnet19b_dw.ra_in1k/blob/39808ce845d469f0f39299fdde40a2ef4a406268/README.md,apache-2.0,models/app-architectures/vovnet.rknn
+FastViT,fastvit,fastvit_t8.apple_in1k,https://huggingface.co/timm/fastvit_t8.apple_in1k,https://huggingface.co/timm/fastvit_t8.apple_in1k/blob/cbc6c66a249060c66b8236284c7c3998e900e944/README.md,other,
+LeViT,levit,levit_128s.fb_dist_in1k,https://huggingface.co/timm/levit_128s.fb_dist_in1k,https://huggingface.co/timm/levit_128s.fb_dist_in1k/blob/ff86cd4479c83f857075f614ddf7e093dbf1292f/README.md,apache-2.0,models/app-architectures/levit.rknn
+CoaT,coat-lite,coat_lite_tiny.in1k,https://huggingface.co/timm/coat_lite_tiny.in1k,https://huggingface.co/timm/coat_lite_tiny.in1k/blob/db143d32976054b06287b8687ff55b9d443fb82f/README.md,apache-2.0,models/app-architectures/coat-lite.rknn
+FasterNet,fasternet-t0,fasternet_t0.in1k,https://huggingface.co/timm/fasternet_t0.in1k,https://huggingface.co/timm/fasternet_t0.in1k/blob/a8c465730c7896ba51d860a6e384fad94e7cfb44/README.md,apache-2.0,models/app-architectures/fasternet-t0.rknn
+PVT,pvtv2-b0,pvt_v2_b0.in1k,https://huggingface.co/timm/pvt_v2_b0.in1k,https://huggingface.co/timm/pvt_v2_b0.in1k/blob/05b6ee72c4090dfd6e0b95a73db6e20cd1e75e9f/README.md,apache-2.0,models/app-architectures/pvtv2-b0.rknn
+GERNet,gernet-s,gernet_s.idstcv_in1k,https://huggingface.co/timm/gernet_s.idstcv_in1k,https://huggingface.co/timm/gernet_s.idstcv_in1k/blob/f07782a90ed90f4108204acbcd8cd0c156419b97/README.md,apache-2.0,models/app-architectures/gernet-s.rknn
+FBNet,fbnetc,fbnetc_100.rmsp_in1k,https://huggingface.co/timm/fbnetc_100.rmsp_in1k,https://huggingface.co/timm/fbnetc_100.rmsp_in1k/blob/d48d5c1d41488815cf985be3aebeb2641f5ca280/README.md,apache-2.0,models/app-architectures/fbnetc.rknn
+HardCoRe-NAS,hardcorenas-a,hardcorenas_a.miil_green_in1k,https://huggingface.co/timm/hardcorenas_a.miil_green_in1k,https://huggingface.co/timm/hardcorenas_a.miil_green_in1k/blob/8043f94dc3f54de7662abf53696ce29a9bb811be/README.md,apache-2.0,models/app-architectures/hardcorenas-a.rknn
+EfficientViT (CGA),efficientvit-cga,efficientvit_m0.r224_in1k,https://huggingface.co/timm/efficientvit_m0.r224_in1k,https://huggingface.co/timm/efficientvit_m0.r224_in1k/blob/dae91a2aabae537136bac735d77172b7e86c428a/README.md,mit,
+StarNet,starnet,starnet_s1.in1k,https://huggingface.co/timm/starnet_s1.in1k,https://huggingface.co/timm/starnet_s1.in1k/blob/e3fbe6d1e24b6293fa6e7b897f380bd62f77e01f/README.md,apache-2.0,models/app-architectures/starnet.rknn
+SwiftFormer,swiftformer,swiftformer_xs.dist_in1k,https://huggingface.co/timm/swiftformer_xs.dist_in1k,https://huggingface.co/timm/swiftformer_xs.dist_in1k/blob/ac0196f198e58c82183a67f5f5c0952421b3e6ac/README.md,apache-2.0,models/app-architectures/swiftformer.rknn
+SelecSLS,selecsls,selecsls42b.in1k,https://huggingface.co/timm/selecsls42b.in1k,https://huggingface.co/timm/selecsls42b.in1k/blob/ba328878e5c7751f8fb8a535a3d1c4b4a540a0d8/README.md,cc-by-4.0,
+PP-HGNet,hgnet,hgnet_tiny.ssld_in1k,https://huggingface.co/timm/hgnet_tiny.ssld_in1k,https://huggingface.co/timm/hgnet_tiny.ssld_in1k/blob/60fd3a062040c894f9dd75dfc1887843b71ab8ef/README.md,apache-2.0,models/app-architectures/hgnet.rknn
+XCiT,xcit,xcit_nano_12_p16_224.fb_dist_in1k,https://huggingface.co/timm/xcit_nano_12_p16_224.fb_dist_in1k,https://huggingface.co/timm/xcit_nano_12_p16_224.fb_dist_in1k/blob/621eefa447a264fd3ea0d55ae771f7ba84c58727/README.md,apache-2.0,models/app-architectures/xcit.rknn
+FocalNet,focalnet,focalnet_tiny_srf.ms_in1k,https://huggingface.co/timm/focalnet_tiny_srf.ms_in1k,https://huggingface.co/timm/focalnet_tiny_srf.ms_in1k/blob/de75c3a73e9ed84fee554a7138d4bac119751645/README.md,mit,
+Xception,xception,xception41p.ra3_in1k,https://huggingface.co/timm/xception41p.ra3_in1k,https://huggingface.co/timm/xception41p.ra3_in1k/blob/39c1434e60cd96017b21dd204b26df2716f24136/README.md,apache-2.0,models/app-architectures/xception.rknn
+ConvMixer,convmixer,convmixer_1024_20_ks9_p14.in1k,https://huggingface.co/timm/convmixer_1024_20_ks9_p14.in1k,https://huggingface.co/timm/convmixer_1024_20_ks9_p14.in1k/blob/bc726146a1de5d032c9e03e567188498f09a8027/README.md,mit,
+DaViT,davit,davit_tiny.msft_in1k,https://huggingface.co/timm/davit_tiny.msft_in1k,https://huggingface.co/timm/davit_tiny.msft_in1k/blob/982f32c73d98f9966df4a7178b32b820bed3c1b1/README.md,apache-2.0,models/app-architectures/davit.rknn
+gMLP,gmlp,gmlp_s16_224.ra3_in1k,https://huggingface.co/timm/gmlp_s16_224.ra3_in1k,https://huggingface.co/timm/gmlp_s16_224.ra3_in1k/blob/ef4294efcbaed5fb374565716d9e08e4ed69a6d8/README.md,apache-2.0,models/app-architectures/gmlp.rknn
+GC ViT,gcvit,gcvit_xxtiny.in1k,https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights-morevit/gcvit_xxtiny_224_nvidia-d1d86009.pth,,,
+Hiera,hiera,hiera_tiny_224.mae_in1k_ft_in1k,https://huggingface.co/timm/hiera_tiny_224.mae_in1k_ft_in1k,https://huggingface.co/timm/hiera_tiny_224.mae_in1k_ft_in1k/blob/fc9ede1b26f3f35d11b269f12656dded630a6c96/README.md,cc-by-nc-4.0,
+TNT,tnt,tnt_s_patch16_224.in1k,https://huggingface.co/timm/tnt_s_patch16_224.in1k,https://huggingface.co/timm/tnt_s_patch16_224.in1k/blob/3197ffd33ba33a86ddfe3719fd6ab87a479ff6e8/README.md,apache-2.0,models/app-architectures/tnt.rknn
+MaxViT,maxvit,maxvit_tiny_tf_224.in1k,https://huggingface.co/timm/maxvit_tiny_tf_224.in1k,https://huggingface.co/timm/maxvit_tiny_tf_224.in1k/blob/041f2cce4d74c7539d63aa9fb85786e78072d487/README.md,apache-2.0,models/app-architectures/maxvit.rknn
+VOLO,volo,volo_d1_224.sail_in1k,https://huggingface.co/timm/volo_d1_224.sail_in1k,https://huggingface.co/timm/volo_d1_224.sail_in1k/blob/0d1b31899ae4cb562932c62d1d8820c1d796a4f1/README.md,apache-2.0,models/app-architectures/volo.rknn

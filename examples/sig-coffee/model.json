@@ -1,0 +1,47 @@
+{
+  "id": "sig-coffee",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    286
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        286
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -6.669051089147615e-09
+      ],
+      "std": [
+        0.9982501864433289
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-coffee.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Coffee"
+      ]
+    ],
+    "assets": {
+      "data/Coffee.zip": {
+        "sha256": "bfba9d67f4a0f2041cb8ba88b60b11f10dab60b670e40b904ac47bd7dfdf4749",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Coffee.zip"
+      }
+    },
+    "requires": []
+  }
+}

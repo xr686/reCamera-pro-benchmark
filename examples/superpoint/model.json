@@ -1,0 +1,48 @@
+{
+  "id": "superpoint",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        192,
+        256
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/superpoint-rv.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "superpoint"
+      ],
+      [
+        "specialize_superpoint.py",
+        "{work}/sources/superpoint.onnx",
+        "{work}/data/superpoint-rv.onnx"
+      ]
+    ],
+    "assets": {
+      "data/superpoint.pth": {
+        "sha256": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
+        "url": "https://raw.githubusercontent.com/magicleap/SuperPointPretrainedNetwork/master/superpoint_v1.pth"
+      },
+      "data/superpoint.py": {
+        "sha256": "613706ae7e9ce3fbc2cfe042fc3f37d739838cc2e1dc8ddd08f8ec037765df04",
+        "url": "https://raw.githubusercontent.com/magicleap/SuperPointPretrainedNetwork/master/demo_superpoint.py"
+      }
+    },
+    "requires": []
+  }
+}

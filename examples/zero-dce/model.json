@@ -1,0 +1,43 @@
+{
+  "id": "zero-dce",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        192,
+        192
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/zero-dce.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "zero-dce"
+      ]
+    ],
+    "assets": {
+      "data/zero.pth": {
+        "sha256": "a4395acb874f320375d9704997cef874eaaaaa26a1777ceb29a92b70f74c3612",
+        "url": "https://raw.githubusercontent.com/Li-Chongyi/Zero-DCE/master/Zero-DCE_code/snapshots/Epoch99.pth"
+      },
+      "data/zero.py": {
+        "sha256": "8adcc8b73b5bfdb1b6e5a16e672c59a7f8f664ee21aafc3eea44bb316d4b97f8",
+        "url": "https://raw.githubusercontent.com/Li-Chongyi/Zero-DCE/master/Zero-DCE_code/model.py"
+      }
+    },
+    "requires": []
+  }
+}

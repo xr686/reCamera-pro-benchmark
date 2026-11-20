@@ -1,0 +1,40 @@
+{
+  "id": "flowers-squeezeprobe",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        80,
+        80
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/flowers-squeezeprobe.onnx",
+    "steps": [
+      [
+        "train_field_images.py",
+        "{work}",
+        "flowers",
+        "{work}"
+      ]
+    ],
+    "assets": {
+      "data/flowers.tgz": {
+        "url": "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz",
+        "sha256": "4c54ace7911aaffe13a365c34f650e71dd5bf1be0a58b464e5a7183e3e595d9c"
+      }
+    },
+    "requires": []
+  }
+}

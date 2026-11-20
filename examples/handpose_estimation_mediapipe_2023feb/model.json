@@ -1,0 +1,40 @@
+{
+  "id": "handpose_estimation_mediapipe_2023feb",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/handpose_estimation_mediapipe_2023feb-rv.onnx",
+    "steps": [
+      [
+        "mediapipe_inputs.py",
+        "{work}/sources/handpose_estimation_mediapipe_2023feb.onnx",
+        "{work}/data/handpose_estimation_mediapipe_2023feb-rv.onnx"
+      ]
+    ],
+    "assets": {
+      "sources/handpose_estimation_mediapipe_2023feb.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/handpose_estimation_mediapipe/handpose_estimation_mediapipe_2023feb.onnx",
+        "sha256": "db0898ae717b76b075d9bf563af315b29562e11f8df5027a1ef07b02bef6d81c"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/handpose_estimation_mediapipe/handpose_estimation_mediapipe_2023feb.onnx"
+}

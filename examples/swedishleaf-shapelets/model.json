@@ -1,0 +1,48 @@
+{
+  "id": "swedishleaf-shapelets",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    128
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        128
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        2.7939677481325642e-12
+      ],
+      "std": [
+        0.996086061000824
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/swedishleaf-shapelets.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "SwedishLeaf"
+      ]
+    ],
+    "assets": {
+      "data/SwedishLeaf.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/SwedishLeaf.zip",
+        "sha256": "4b088db4c24c909dfc24ddb9bdaca45a16be1ae7883b1f25bb254567db3d0287"
+      }
+    },
+    "requires": []
+  }
+}

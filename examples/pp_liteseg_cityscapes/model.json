@@ -1,0 +1,34 @@
+{
+  "id": "pp_liteseg_cityscapes",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        512,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://github.com/airockchip/rknn_model_zoo/tree/bad6c7334531becaf90a561988519b7bec34d0ab/examples/ppseg",
+  "export": {
+    "graph": "sources/pp_liteseg_cityscapes.onnx",
+    "assets": {
+      "sources/pp_liteseg_cityscapes.onnx": {
+        "url": "https://ftzr.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/ppseg/pp_liteseg_cityscapes.onnx",
+        "sha256": "ee29852c536d4cc13fa51d59201db310dc94140e72e96e12f07b36e37895da16"
+      }
+    },
+    "steps": [],
+    "requires": []
+  }
+}

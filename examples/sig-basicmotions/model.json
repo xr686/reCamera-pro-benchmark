@@ -1,0 +1,57 @@
+{
+  "id": "sig-basicmotions",
+  "input_kind": "array",
+  "sample_shape": [
+    6,
+    100
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        6,
+        1,
+        100
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        2.5527594089508057,
+        -1.3039369583129883,
+        -1.0265804529190063,
+        0.019051101058721542,
+        -0.023957693949341774,
+        -0.055789683014154434
+      ],
+      "std": [
+        7.072305679321289,
+        6.7940874099731445,
+        3.5463736057281494,
+        2.111920118331909,
+        1.8207508325576782,
+        3.5165863037109375
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-basicmotions.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "BasicMotions"
+      ]
+    ],
+    "assets": {
+      "data/BasicMotions.zip": {
+        "sha256": "f427609dfe343b1da0dc54ee361f61579e7f18c2a007121740a9f0d90286fac3",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/BasicMotions.zip"
+      }
+    },
+    "requires": []
+  }
+}

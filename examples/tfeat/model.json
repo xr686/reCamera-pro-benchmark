@@ -1,0 +1,40 @@
+{
+  "id": "tfeat",
+  "input_kind": "image",
+  "sample_shape": [
+    32,
+    32,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        32,
+        32
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/tfeat.onnx",
+    "steps": [
+      [
+        "export_wave3_geometry.py",
+        "{work}",
+        "--model",
+        "tfeat"
+      ]
+    ],
+    "assets": {
+      "data/tfeat.pth": {
+        "url": "https://raw.githubusercontent.com/vbalnt/tfeat/master/pretrained-models/tfeat-liberty.params",
+        "sha256": "1f2e9516b03c45876161da006ce8047e0a66ef08cc91d3fbf96a75f1a80f445a"
+      }
+    },
+    "requires": []
+  }
+}

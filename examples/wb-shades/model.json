@@ -1,0 +1,35 @@
+{
+  "id": "wb-shades",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        96,
+        96
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/wb-shades.onnx",
+    "steps": [
+      [
+        "build_field_vision.py",
+        "{work}",
+        "--model",
+        "wb-shades"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  }
+}

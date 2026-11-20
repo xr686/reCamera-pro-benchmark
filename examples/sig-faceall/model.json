@@ -1,0 +1,47 @@
+{
+  "id": "sig-faceall",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    131
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        131
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -2.437485491224578e-10
+      ],
+      "std": [
+        0.9961758852005005
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-faceall.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "FaceAll"
+      ]
+    ],
+    "assets": {
+      "data/FaceAll.zip": {
+        "sha256": "a83d38efac3c646a718d1d9bc27346e55c8b05e5543cf8f6bbe9eebbb8ff41e6",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/FaceAll.zip"
+      }
+    },
+    "requires": []
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "clip-image",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/clip-image.onnx",
+    "steps": [],
+    "assets": {
+      "sources/clip-image.onnx": {
+        "sha256": "981517696b79c0dcd8c3b03564369213ef891f0cc9f7692e0cfa89ab58d471ff",
+        "url": "https://ftrg.zbox.filez.com/v2/delivery/data/95f00b0fc900458ba134f8b180b3f7a1/examples/clip/clip_images.onnx"
+      }
+    },
+    "requires": []
+  }
+}

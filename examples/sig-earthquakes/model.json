@@ -1,0 +1,47 @@
+{
+  "id": "sig-earthquakes",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    512
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        7.664611306745783e-11
+      ],
+      "std": [
+        0.9990229606628418
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-earthquakes.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Earthquakes"
+      ]
+    ],
+    "assets": {
+      "data/Earthquakes.zip": {
+        "sha256": "927cfb732988055850a74efa169dfd633bc7f578095c35319bebb83453501bf1",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Earthquakes.zip"
+      }
+    },
+    "requires": []
+  }
+}

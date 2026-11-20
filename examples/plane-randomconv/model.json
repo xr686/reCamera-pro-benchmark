@@ -1,0 +1,48 @@
+{
+  "id": "plane-randomconv",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    144
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        144
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -2.522947961658417e-10
+      ],
+      "std": [
+        0.9965217709541321
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/plane-randomconv.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Plane"
+      ]
+    ],
+    "assets": {
+      "data/Plane.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Plane.zip",
+        "sha256": "7689cc0f02e99c9bf50af573bb67db2b516150906bc4ac430223f73763c58101"
+      }
+    },
+    "requires": []
+  }
+}

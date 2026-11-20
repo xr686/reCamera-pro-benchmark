@@ -1,0 +1,48 @@
+{
+  "id": "gunpoint-cosine",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    150
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        150
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        1.780192104838818e-09
+      ],
+      "std": [
+        0.9966610670089722
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/gunpoint-cosine.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "GunPoint"
+      ]
+    ],
+    "assets": {
+      "data/GunPoint.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/GunPoint.zip",
+        "sha256": "d7513cfe222418fabfdb5a6434ffb21ac3de4923e637971e9388ebc857816803"
+      }
+    },
+    "requires": []
+  }
+}

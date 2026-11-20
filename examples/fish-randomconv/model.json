@@ -1,0 +1,48 @@
+{
+  "id": "fish-randomconv",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    463
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        463
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -3.295634876110398e-10
+      ],
+      "std": [
+        0.9989194869995117
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/fish-randomconv.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Fish"
+      ]
+    ],
+    "assets": {
+      "data/Fish.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Fish.zip",
+        "sha256": "5bd72f74fc6f4fc591df3138fc8d09cd0be899401d1464fe0392a9ab4648a56f"
+      }
+    },
+    "requires": []
+  }
+}
