@@ -1,10 +1,14 @@
 # reCamera Pro RKNN 模型基准测试
 
+[English](README.md) · **简体中文**
+
 [![应用层基准](https://img.shields.io/badge/app%20configs-270-blue)](#rv1126b-应用层基准)
 [![原有模型目录](https://img.shields.io/badge/model%20directory-25-blue)](./models/)
 [![设备](https://img.shields.io/badge/device-reCamera%20Pro%20(RV1126B)-orange)](https://www.seeedstudio.com/)
 
 对 Seeed reCamera Pro（Rockchip RV1126B，2 GB RAM，aarch64）进行了全面的 RKNN 模型基准测试。所有模型均转换为 RKNN 格式，并在设备上使用真实的 NPU 推理进行基准测试。
+
+[查看模型实测指标](#rv1126b-应用层基准) · [运行单个模型示例](examples/README.md) · [快速入门](#快速入门)
 
 下方原生 YOLO 表的数据来自 [`native/`](./native/) 中的原生 C++ 基准程序：RGA 直接把 letterbox
 结果写入零拷贝的 RKNN 输入缓冲、int8 输出原地解码、NPU/CPU 频率锁定到最高档。
@@ -362,8 +366,8 @@ VOLO 有四个转置算子在 CPU 上执行，其同步推理耗时包含这部�
 ```bash
 # 克隆仓库（使用 Git LFS 下载模型权重）
 git lfs install
-git clone https://github.com/Seeed-Projects/recamera-pro-benchmark.git
-cd recamera-pro-benchmark
+git clone https://github.com/xr686/reCamera-pro-benchmark.git
+cd reCamera-pro-benchmark
 
 # 在设备上跑完整个 YOLO 矩阵（交叉编译 + 推送 + 基准测试）
 DEVICE_IP=192.168.42.1 ./scripts/bench_native.sh
