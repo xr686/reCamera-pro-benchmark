@@ -71,6 +71,8 @@ python apps/npu-benchmark/tools/convert_models.py build/benchmark-onnx
 python3 market/packaging/build.py apps/npu-benchmark --out dist/
 ```
 
+已从干净检出重新导出并编译三个基础分类器，成功生成 0.8.0 arm64 安装包。本次重编译的三个 RKNN 与历史板端记录的 SHA-256 均不同。转换脚本会更新本地应用 manifest；归档结果保留当时实际运行的权重摘要。需要逐字节一致的模型时，可从仓库提供的 24 个 LFS 权重中选择，并与[模型哈希清单](../../benchmark_results/app/model-hashes.csv)核对。
+
 可用同一批图片核对原始 FP32 模型的预测。在安装 PyTorch、TorchVision、OpenCV 和本项目 Kit 依赖的主机环境运行以下命令。输出顺序与设备报告的 samples 相同。
 
 ```sh
