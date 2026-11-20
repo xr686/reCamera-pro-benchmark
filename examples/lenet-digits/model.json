@@ -1,0 +1,38 @@
+{
+  "id": "lenet-digits",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        32,
+        32
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/lenet-digits.onnx",
+    "steps": [
+      [
+        "train_commands_digits.py",
+        "{work}"
+      ]
+    ],
+    "assets": {
+      "data/mini_speech_commands.zip": {
+        "sha256": "49650f2341b26d886b46b3f4fb8fed59e30300b17550f1ee4a768b3106cf93a0",
+        "url": "https://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip"
+      }
+    },
+    "requires": []
+  }
+}

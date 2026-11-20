@@ -1,12 +1,12 @@
 # reCamera Pro 已测算法总览
 
-RV1126B 固件 V1.3.2 的 NPU 基准累计完成 270 个不同 ID 的配置，覆盖 100 个任务标签。下表按既定骨干口径列出 50 个 ImageNet 分类架构族。其他任务的表格保留实际运行的网络、模型头或经典算法名称；同一实现可出现在多个任务中。
+RV1126B 固件 V1.3.2 的 NPU 基准累计完成 270 个不同 ID 的配置，覆盖 100 个任务标签。下表按既定骨干口径列出 50 个 ImageNet 分类模型。其他任务的表格保留实际运行的网络、模型头或经典算法名称；同一实现可出现在多个任务中。
 
-## 分类架构族
+## 分类模型
 
-历史分类评测的 43 个配置合并为 34 族，最近一次新增 16 族。代表模型以真机索引为准。ResNet 包括按本项目口径合并的 ResNeXt、SK-ResNet 和 ResNeSt；在分割、定位或品种识别中复用该骨干也不增加分类架构数。
+历史分类评测的 43 个配置合并为 34 个代表模型，最近一次新增 16 个模型。代表模型以真机索引为准。ResNet 包括按本项目口径合并的 ResNeXt、SK-ResNet 和 ResNeSt；在分割、定位或品种识别中复用该骨干也不增加分类架构数。
 
-| 架构族 | 实测代表 | 同族其他分类配置 ID |
+| 代表模型 | 实测代表 | 其他实测变体 ID |
 |---|---|---|
 | ResNet | ResNet-18 | resnext50_32x4d、skresnet、resnest |
 | MobileNet | MobileNetV3 Small | mobilenet-v2、mobilenetv4-small |
@@ -59,7 +59,7 @@ RV1126B 固件 V1.3.2 的 NPU 基准累计完成 270 个不同 ID 的配置，�
 | MaxViT | maxvit_tiny_tf_224.in1k | — |
 | VOLO | volo_d1_224.sail_in1k | — |
 
-[分类架构索引 CSV](RV1126B-ImageNet-family-index.csv) · [最近 16 个架构的速度与精度](../../apps/npu-benchmark/ARCHITECTURES-1.3.2.md)
+[分类架构索引 CSV](RV1126B-ImageNet-model-index.csv) · [最近 16 个架构的速度与精度](../../apps/npu-benchmark/ARCHITECTURES-1.3.2.md)
 
 ## 其余 99 个任务标签的实测算法
 

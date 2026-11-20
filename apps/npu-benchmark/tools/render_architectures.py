@@ -1,4 +1,4 @@
-"""Generate the per-family benchmark and a deduplicated ImageNet backbone index."""
+"""Generate the per-model benchmark and a deduplicated ImageNet backbone index."""
 
 import argparse
 import csv
@@ -140,7 +140,7 @@ def render(work, previous, output, plans):
         set(suite["models"]) - cache.keys()
     )
     rows = []
-    for key, (family, checkpoint, side, design) in FAMILIES.items():
+    for key, (model, checkpoint, side, design) in FAMILIES.items():
         if key not in cache:
             continue
         m, tag = cache[key]
@@ -150,7 +150,7 @@ def render(work, previous, output, plans):
         tr = suite["models"][key]["transform"]
         rows.append(
             dict(
-                family=family,
+                model=model,
                 representative=checkpoint,
                 id=key,
                 design=design,
@@ -181,11 +181,11 @@ def render(work, previous, output, plans):
     rows.sort(key=lambda r: r["infer_ms"])
     write_csv(release / "RV1126B-architectures.csv", rows)
     index = []
-    for family, ids in HISTORICAL.items():
+    for model, ids in HISTORICAL.items():
         r = old[ids[0]]
         index.append(
             dict(
-                family=family,
+                model=model,
                 representative=r["name"],
                 id=r["id"],
                 sample_count=r["unique"],
@@ -200,7 +200,7 @@ def render(work, previous, output, plans):
     for r in rows:
         index.append(
             dict(
-                family=r["family"],
+                model=r["model"],
                 representative=r["representative"],
                 id=r["id"],
                 sample_count=r["samples"],
@@ -212,23 +212,23 @@ def render(work, previous, output, plans):
                 merged_ids="",
             )
         )
-    write_csv(release / "RV1126B-ImageNet-family-index.csv", index)
+    write_csv(release / "RV1126B-ImageNet-model-index.csv", index)
     checks = [c for m, _ in cache.values() for c in m["checks"]]
     doc = [
         "# RV1126B 模型架构基准",
         "",
-        f"reCamera Pro，固件 V1.3.2。本轮 {len(rows)} 个新增视觉架构族，每族一个预训练代表。历史 ImageNet 分类记录共 {len(old)} 个配置，按下述口径归为 {len(HISTORICAL)} 族，合计 {len(index)} 个分类骨干族。历史多任务总表的 254 是权重和任务配置数。",
+        f"reCamera Pro，固件 V1.3.2。本轮 {len(rows)} 个新增视觉分类模型，每项对应一个预训练权重。历史 ImageNet 分类记录共 {len(old)} 个配置，按下述口径归为 {len(HISTORICAL)} 个代表模型，合计 {len(index)} 个代表模型。历史多任务总表的 254 是权重和任务配置数。",
         "",
         "## 相同测试集上的板端结果",
         "",
         "100 张 Imagenette 验证图，每类 10 张，按原始 ImageNet 1000 类排序。全部采用 batch 1、RV1126B FP16 RKNN，每模型预热 5 次，再依次测量相同的 100 张图片。按同步推理均值升序排列。",
         "",
-        "| 架构族 | 输入 | RKNN MiB | 前处理 ms | 推理 ms | 推理 P95 ms | 后处理 ms | 三段 FPS | 含回收 FPS | Top-1 | Top-5 |",
+        "| 代表模型 | 输入 | RKNN MiB | 前处理 ms | 推理 ms | 推理 P95 ms | 后处理 ms | 三段 FPS | 含回收 FPS | Top-1 | Top-5 |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for r in rows:
         doc.append(
-            "| {family} | {input} | {mib:.1f} | {pre_ms:.2f} | {infer_ms:.2f} | {infer_p95_ms:.2f} | {post_ms:.2f} | {pipeline_fps:.2f} | {with_cleanup_fps:.2f} | {top1:.0%} | {top5:.0%} |".format(
+            "| {model} | {input} | {mib:.1f} | {pre_ms:.2f} | {infer_ms:.2f} | {infer_p95_ms:.2f} | {post_ms:.2f} | {pipeline_fps:.2f} | {with_cleanup_fps:.2f} | {top1:.0%} | {top5:.0%} |".format(
                 **r
             )
         )
@@ -236,18 +236,18 @@ def render(work, previous, output, plans):
         "",
         "## 架构与主机对照",
         "",
-        "| 架构族 | 权重 / 实现 | 主要结构 | ONNX Top-1 / Top-5 | 板端与 ONNX 抽样余弦 |",
+        "| 代表模型 | 权重 / 实现 | 主要结构 | ONNX Top-1 / Top-5 | 板端与 ONNX 抽样余弦 |",
         "|---|---|---|---:|---:|",
     ]
     for r in rows:
         doc.append(
-            f"| {r['family']} | [{r['representative']}]({r['source']}) | {r['design']} | {r['onnx_top1']:.0%} / {r['onnx_top5']:.0%} | {r['onnx_cosine']:.5f} |"
+            f"| {r['model']} | [{r['representative']}]({r['source']}) | {r['design']} | {r['onnx_top1']:.0%} / {r['onnx_top5']:.0%} | {r['onnx_cosine']:.5f} |"
         )
     doc += [
         "",
         "## 去重与测量口径",
         "",
-        "架构以主干的网络拓扑和核心计算模块归族。同族变更深度、宽度、分辨率、下游任务、分类头或权重只占一行。历史表中保守地将 ResNeXt、SK-ResNet、ResNeSt 归入 ResNet，将不同代的 MobileNet 归入 MobileNet。应用默认仅运行已安装的新增架构代表，历史数据可按模型 ID 查询。历史索引按已测 ImageNet 分类骨干建立，保留原始样本量和轮次。",
+        "架构以主干的网络拓扑和核心计算模块分组。同一模型变更深度、宽度、分辨率、下游任务、分类头或权重只占一行。历史表中保守地将 ResNeXt、SK-ResNet、ResNeSt 归入 ResNet，将不同代的 MobileNet 归入 MobileNet。应用默认仅运行已安装的新增模型代表，历史数据可按模型 ID 查询。历史索引按已测 ImageNet 分类骨干建立，保留原始样本量和轮次。",
         "",
         "前处理包括按权重设置缩放短边、中心裁剪、BGR 转 RGB、均值方差归一化及输入内存布局转换。短边和归一化参数逐模型保存在 CSV。推理包含输入提交至同步取回输出，后处理对 1000 个类别分数排序取前五。三段 FPS 按三段均值之和取倒数；含回收 FPS 另计 Python 应用每帧释放输出及垃圾回收。采集、读盘、图像解码和标注计分均在计时外。准确率仅适用于本次 100 图子集。",
         "",

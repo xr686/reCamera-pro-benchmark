@@ -1,0 +1,48 @@
+{
+  "id": "screentype-randomconv",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    720
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        720
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -1.9214771995734736e-09
+      ],
+      "std": [
+        0.9993053674697876
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/screentype-randomconv.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "ScreenType"
+      ]
+    ],
+    "assets": {
+      "data/ScreenType.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/ScreenType.zip",
+        "sha256": "9b1acf8a4577b81df5af19233c7a347e41eee037ff68782cd5ac87efef1de682"
+      }
+    },
+    "requires": []
+  }
+}

@@ -10,7 +10,7 @@
 
 ## RV1126B 应用层基准
 
-固件 V1.3.2 实测 **270 个配置，覆盖 100 个任务标签**。其中 59 个 ImageNet 分类配置按主干合并为 **50 个架构族**。逐配置结果包含前处理、推理均值与 P95、后处理、FPS、样本数、任务质量和模型哈希。应用端采用 Python 串行计时，下方原生 YOLO 表采用 C++ 和 RGA 的计时口径。[结果导读](benchmark_results/app/README.md) · [已测算法总览](benchmark_results/app/RV1126B-tested-algorithms.md) · [测试应用](apps/npu-benchmark/README.md) · [RKNN 下载](models/app-architectures/README.md)
+固件 V1.3.2 实测 **270 个配置，覆盖 100 个任务标签**。其中 59 个 ImageNet 分类配置按主干合并为 **50 个代表模型**。逐配置结果包含前处理、推理均值与 P95、后处理、FPS、样本数、任务质量和模型哈希。应用端采用 Python 串行计时，下方原生 YOLO 表采用 C++ 和 RGA 的计时口径。[逐模型应用示例](examples/README.md) · [结果导读](benchmark_results/app/README.md) · [已测算法总览](benchmark_results/app/RV1126B-tested-algorithms.md) · [测试应用](apps/npu-benchmark/README.md) · [RKNN 下载](models/app-architectures/README.md)
 
 ---
 

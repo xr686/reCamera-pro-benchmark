@@ -1,0 +1,40 @@
+{
+  "id": "pose_estimation_mediapipe_2023mar",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/pose_estimation_mediapipe_2023mar-rv.onnx",
+    "steps": [
+      [
+        "mediapipe_inputs.py",
+        "{work}/sources/pose_estimation_mediapipe_2023mar.onnx",
+        "{work}/data/pose_estimation_mediapipe_2023mar-rv.onnx"
+      ]
+    ],
+    "assets": {
+      "sources/pose_estimation_mediapipe_2023mar.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/pose_estimation_mediapipe/pose_estimation_mediapipe_2023mar.onnx",
+        "sha256": "9d89c599319a18fb7d2e28451a883476164543182bafca5f09eb2cf767ed2f3f"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/pose_estimation_mediapipe/pose_estimation_mediapipe_2023mar.onnx"
+}

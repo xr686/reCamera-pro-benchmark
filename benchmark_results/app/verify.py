@@ -51,14 +51,14 @@ def verify(root):
             for field, value in metrics.items():
                 check(math.isclose(float(row[field]), value, rel_tol=1e-8, abs_tol=1e-8), f"{key} {field}")
     check(seen == ids.keys(), "Missing board measurements")
-    families = read_csv(root / "RV1126B-ImageNet-family-index.csv")
+    families = read_csv(root / "RV1126B-ImageNet-model-index.csv")
     members = [key for row in families for key in [row["id"], *filter(None, row["merged_ids"].split(","))]]
     checkpoints = read_csv(root / "classification-sources.csv")
     check(len(members) == len(set(members)) and set(members) <= ids.keys(), "Overlapping or unknown family members")
     check(set(members) == {r["id"] for r in checkpoints}, "Missing checkpoint sources")
     hashes = read_csv(root / "model-hashes.csv")
     check({r["id"]: r["rknn_sha256"] for r in hashes} == {k: r["sha256"] for k, r in ids.items()}, "Artifact manifest mismatch")
-    print(f"{len(ids)} configurations, {len(families)} classification families, {len(runs)} runs, {samples} timed calls")
+    print(f"{len(ids)} configurations, {len(families)} representative classification models, {len(runs)} runs, {samples} timed calls")
 
 
 if __name__ == "__main__":

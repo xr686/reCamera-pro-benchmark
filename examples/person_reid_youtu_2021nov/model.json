@@ -1,0 +1,34 @@
+{
+  "id": "person_reid_youtu_2021nov",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        256,
+        128
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/person_reid_youtu_2021nov.onnx",
+    "steps": [],
+    "assets": {
+      "sources/person_reid_youtu_2021nov.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/person_reid_youtureid/person_reid_youtu_2021nov.onnx",
+        "sha256": "0579683334d4b9440221606dcb461656dd0dc64143b18f48faedaced9b4f580d"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/person_reid_youtureid/person_reid_youtu_2021nov.onnx"
+}

@@ -1,6 +1,6 @@
 # reCamera Pro NPU 基准应用
 
-按主干归族的真机结果见[架构专项报告](ARCHITECTURES-1.3.2.md)。
+按模型整理的真机结果见[架构专项报告](ARCHITECTURES-1.3.2.md)。
 
 在 RV1126B 上以 batch 1 顺序加载模型，记录前处理、同步推理、后处理、串行吞吐率、任务质量和独占状态。V1.3.2 的第五批模型见[第五批实测报告](FIELD-SEQUENCE-1.3.2.md)，第四批模型见[第四批实测报告](FIELD-1.3.2.md)，此前的 131 个配置见[第三批报告](EXTENDED-1.3.2.md)，前 85 项的逐模型数据见[首批报告](FIRMWARE-1.3.2.md)。V1.3.1 的 39 个配置、样本和转换边界见[上一版报告](MULTITASK.md)。三个 ImageNet 分类器的三轮重复性和 FP32 对照见[分类专项报告](BENCHMARK.md)。
 
@@ -8,7 +8,7 @@
 
 在 reCamera Pro Extension API SDK 的工作副本中，将本目录复制为 `apps/npu-benchmark`。按下文“重建模型和应用”生成打包所需的三个基础分类权重，并用 SDK 的 `market/packaging/build.py` 打包。SDK 需提供 manifest 声明的 Python 3.11、Kit、ABI 和 RKNN 运行时。[SDK 源码](https://github.com/Seeed-Studio/recamera-pro-ext-api)
 
-架构专项可直接用本仓库的 LFS 权重及公开验证图复测。从 benchmark 仓库根目录运行以下命令，生成 StarNet 的资源包。将设备上的“模型 ID”设为 `starnet`。可在命令尾部追加同属最近 16 族且已有权重的 ID。打包工具按归档的 SHA-256 校验模型、图片和标注。[架构权重](../../models/app-architectures/README.md) · [专项指标和模型 ID](../../benchmark_results/app/RV1126B-architectures.csv)
+架构专项可直接用本仓库的 LFS 权重及公开验证图复测。从 benchmark 仓库根目录运行以下命令，生成 StarNet 的资源包。将设备上的“模型 ID”设为 `starnet`。可在命令尾部追加属于最近 16 个模型且已有权重的 ID。打包工具按归档的 SHA-256 校验模型、图片和标注。[架构权重](../../models/app-architectures/README.md) · [专项指标和模型 ID](../../benchmark_results/app/RV1126B-architectures.csv)
 
 ```bash
 git lfs pull --include="models/app-architectures/starnet.rknn"
@@ -24,7 +24,7 @@ python3 apps/npu-benchmark/tools/pack_imagenette_run.py \
 ## 在设备上复测
 
 1. 在应用中心安装 `npu-benchmark-0.8.0-arm64.tar.gz`，将 `architectures-resources.tar.gz` 解压到 `/userdata/local/appdata/npu-benchmark/`。这个资源包包含独立运行架构基准所需的模型、标注、图片和校验清单。
-2. 在“测试范围”选择“新增架构，每族一个代表”（默认），留空“模型 ID”即可测量新架构。填写 ID 可单测，例如 `starnet`，也可以逗号分隔选择多个。需要复现历史配置时，安装对应历史资源包后填写 ID，或选择“全部已安装配置”。
+2. 在“测试范围”选择“新增分类模型”（默认），留空“模型 ID”即可测量新架构。填写 ID 可单测，例如 `starnet`，也可以逗号分隔选择多个。需要复现历史配置时，安装对应历史资源包后填写 ID，或选择“全部已安装配置”。
 3. 记下正在使用 NPU 的应用，在应用中心暂停它们，再启动 **NPU 模型基准测试**。基准取得固件 broker 独占租约，并等待三个间隔一秒的零负载读数。应用在测量过程中定期检查租约和打开 NPU 的进程。
 4. 日志出现 `Benchmark complete` 后，从 `/userdata/local/appdata/npu-benchmark/report.md` 读取最新完整报告。同目录 `report.json` 保存逐样本质量、逐次时延、设备信息和独占检查。跨任务运行期间可读取 `multitask-progress.json` 查看已完成的模型。使用 UTC 时间区分不同轮次。停止基准应用，恢复之前运行的应用。第四批报告、累计 CSV 和原始证据另存于同目录的 `FIELD-1.3.2.md`、`RV1126B-field-combined.csv`、`field-evidence.tar.gz`。
 
@@ -134,7 +134,7 @@ python3 apps/npu-benchmark/tools/render_multitask.py \
 
 ## 架构专项的重建
 
-`architecture_models.py` 为每个架构族固定一个代表、官方 checkpoint、输入尺寸和结构说明。历史 ImageNet 分类骨干的合并规则位于 `tools/render_architectures.py` 的 HISTORICAL 表。使用该脚本时提供上一轮累计 CSV，工具会检查每个历史分类 ID 恰好归入一个族。
+`architecture_models.py` 为每个模型记录一个实测版本、官方 checkpoint、输入尺寸和结构说明。历史 ImageNet 分类骨干的合并规则位于 `tools/render_architectures.py` 的 HISTORICAL 表。使用该脚本时提供上一轮累计 CSV，工具会检查每个历史分类 ID 恰好归入一个代表模型。
 
 1. 在主机 RKNN 环境准备 WORK 下的 sources、compiled、data、logs、fixtures、results、release 目录。运行 `tools/build_architectures.py WORK` 导出原始 ONNX 并编译为 RV1126B FP16 RKNN。参数可附加一个或多个架构 ID。使用公开的 timm 预训练权重。
 2. 在 PYTHONPATH 中加入 SDK 根目录，运行 `tools/prepare_architectures.py WORK 上轮fixtures目录 架构ID...`，复用相同的 100 张分类验证图。原始 ONNX 用于主机对照。打包用 `tools/pack_resources.py --architectures WORK WORK architectures-resources.tar.gz`。

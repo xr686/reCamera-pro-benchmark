@@ -1,0 +1,34 @@
+{
+  "id": "espcn-x3",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://github.com/onnx/models/blob/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/super_resolution/sub_pixel_cnn_2016/model/super-resolution-10.onnx",
+  "export": {
+    "graph": "sources/espcn-x3.onnx",
+    "requires": [],
+    "steps": [],
+    "assets": {
+      "sources/espcn-x3.onnx": {
+        "url": "https://media.githubusercontent.com/media/onnx/models/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/super_resolution/sub_pixel_cnn_2016/model/super-resolution-10.onnx",
+        "sha256": "85f36ff88cc504a24af5e0602148bc56a8aa09a58eca8c0da2756f3e8186035e"
+      }
+    }
+  }
+}

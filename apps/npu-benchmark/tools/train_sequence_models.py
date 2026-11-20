@@ -149,7 +149,8 @@ def train(work, ds):
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("work", type=Path)
+    p.add_argument("--dataset", choices=SERIES)
     args = p.parse_args()
     torch.set_num_threads(2)
-    for ds in SERIES:
+    for ds in ([args.dataset] if args.dataset else SERIES):
         train(args.work, ds)

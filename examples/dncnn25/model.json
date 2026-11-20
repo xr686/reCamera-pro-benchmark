@@ -1,0 +1,39 @@
+{
+  "id": "dncnn25",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        128,
+        128
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/dncnn25.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "dncnn25"
+      ]
+    ],
+    "assets": {
+      "data/dncnn_25.pth": {
+        "sha256": "0451a70de9b672ae037270498fbb1c17a1c1c4403785df586ff65df5b858e5b0",
+        "url": "https://github.com/cszn/KAIR/releases/download/v1.0/dncnn_25.pth"
+      }
+    },
+    "requires": []
+  }
+}

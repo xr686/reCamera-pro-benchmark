@@ -1,0 +1,37 @@
+{
+  "id": "mvtec-grid-ae",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        128,
+        128
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/mvtec-grid-ae.onnx",
+    "steps": [
+      [
+        "fetch_wave3_mvtec.py",
+        "{work}"
+      ],
+      [
+        "train_wave3_mvtec.py",
+        "{work}"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  }
+}

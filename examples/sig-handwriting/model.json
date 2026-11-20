@@ -1,0 +1,51 @@
+{
+  "id": "sig-handwriting",
+  "input_kind": "array",
+  "sample_shape": [
+    3,
+    152
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        1,
+        152
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        6.651620054753948e-08,
+        9.737124884168225e-08,
+        4.101087025532024e-09
+      ],
+      "std": [
+        0.9967052936553955,
+        0.9967042207717896,
+        0.9967048168182373
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-handwriting.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Handwriting"
+      ]
+    ],
+    "assets": {
+      "data/Handwriting.zip": {
+        "sha256": "e8a19ce94c82ee76205d441c77928a08ec34f7dcbf3edc11f569055c6ed51a8b",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Handwriting.zip"
+      }
+    },
+    "requires": []
+  }
+}

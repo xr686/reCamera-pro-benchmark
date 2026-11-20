@@ -1,0 +1,48 @@
+{
+  "id": "ham-randomconv",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    431
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        431
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        8.120005362544092e-11
+      ],
+      "std": [
+        0.998839259147644
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/ham-randomconv.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "Ham"
+      ]
+    ],
+    "assets": {
+      "data/Ham.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Ham.zip",
+        "sha256": "2f0f001691e414c11725fde43e07994173bd5840b6c289eb59ccc69afb1555a4"
+      }
+    },
+    "requires": []
+  }
+}

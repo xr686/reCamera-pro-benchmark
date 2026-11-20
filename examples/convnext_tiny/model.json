@@ -1,0 +1,43 @@
+{
+  "id": "convnext_tiny",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        236
+      ],
+      "interpolation": "bilinear"
+    }
+  },
+  "export": {
+    "graph": "sources/convnext_tiny.onnx",
+    "steps": [
+      [
+        "export_vision_suite.py",
+        "{work}",
+        "convnext_tiny"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "palm_detection_mediapipe_2023feb",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        192,
+        192,
+        3
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/palm_detection_mediapipe_2023feb-rv.onnx",
+    "steps": [
+      [
+        "mediapipe_inputs.py",
+        "{work}/sources/palm_detection_mediapipe_2023feb.onnx",
+        "{work}/data/palm_detection_mediapipe_2023feb-rv.onnx"
+      ]
+    ],
+    "assets": {
+      "sources/palm_detection_mediapipe_2023feb.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/palm_detection_mediapipe/palm_detection_mediapipe_2023feb.onnx",
+        "sha256": "78ff51c38496b7fc8b8ebdb6cc8c1abb02fa6c38427c6848254cdaba57fcce7c"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/palm_detection_mediapipe/palm_detection_mediapipe_2023feb.onnx"
+}

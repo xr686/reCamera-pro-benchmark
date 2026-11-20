@@ -199,16 +199,22 @@ def fixtures(work, previous):
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("work", type=Path)
-    p.add_argument("previous", type=Path)
+    p.add_argument("previous", nargs="?", type=Path)
+    p.add_argument("--model", choices=[*FLOW, *COLOR, *COPIES], help="Export just this graph without evaluation fixtures")
     a = p.parse_args()
     torch.set_num_threads(2)
-    fixtures(a.work, a.previous)
+    if not a.model:
+        if not a.previous:
+            p.error("previous fixtures directory required for the full suite")
+        fixtures(a.work, a.previous)
     for group, cls, shape in [
         (FLOW, Flow, (1, 2, 112, 160)),
         (COLOR, Illuminant, (1, 3, 96, 96)),
         (COPIES, CopyHash, (1, 1, 32, 32)),
     ]:
         for key in group:
+            if a.model and key != a.model:
+                continue
             torch.onnx.export(
                 cls(key).eval(),
                 torch.zeros(shape),

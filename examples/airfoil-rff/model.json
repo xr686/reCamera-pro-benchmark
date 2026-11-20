@@ -1,0 +1,58 @@
+{
+  "id": "airfoil-rff",
+  "input_kind": "array",
+  "sample_shape": [
+    5
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        5
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "mean": [
+      2917.0452528837623,
+      6.642147293700083,
+      0.13851677018633232,
+      51.082608695652006,
+      0.010719516671694766
+    ],
+    "std": [
+      3193.1099515976707,
+      5.902864117920322,
+      0.09375030474031927,
+      15.671052870656771,
+      0.012507751236458099
+    ]
+  },
+  "export": {
+    "graph": "sources/airfoil-rff.onnx",
+    "steps": [
+      [
+        "train_wave3_supervised.py",
+        "{work}",
+        "tabular"
+      ]
+    ],
+    "assets": {
+      "data/airfoil.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/291/airfoil+self+noise.zip",
+        "sha256": "5c7767ba53ad827d3f48ba1eb9434117f4892df8f10bc4c99e118a9e8a7ae07c"
+      },
+      "data/wine.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/186/wine+quality.zip",
+        "sha256": "3ed56667f4b828242bd732d7d1dd7f2861e54432239d7fa63877014cbb0304d4"
+      },
+      "data/energy.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/242/energy+efficiency.zip",
+        "sha256": "499441eee27929a4b00417f58fd8c63c9cc14b8a71520cd0dd27fcb626738351"
+      }
+    },
+    "requires": []
+  }
+}

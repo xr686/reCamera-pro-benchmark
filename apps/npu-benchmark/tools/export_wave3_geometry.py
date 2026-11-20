@@ -50,9 +50,9 @@ class Stereo(nn.Module):
         return self.avg(torch.abs(l - r))
 
 
-def export(work):
+def export(work, selected=None):
     torch.set_num_threads(2)
-    for key in [*PATCH, *STEREO]:
+    for key in selected or [*PATCH, *STEREO]:
         if key in PATCH:
             mod = {"tfeat": TFeat, "sosnet": SOSNet, "hardnet": HardNet}[key]().eval()
             weights = torch.load(
@@ -85,4 +85,6 @@ def export(work):
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("work", type=Path)
-    export(p.parse_args().work)
+    p.add_argument("--model", choices=[*PATCH, *STEREO])
+    args = p.parse_args()
+    export(args.work, [args.model] if args.model else None)

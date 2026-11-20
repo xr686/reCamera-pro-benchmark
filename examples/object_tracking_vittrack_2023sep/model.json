@@ -1,0 +1,50 @@
+{
+  "id": "object_tracking_vittrack_2023sep",
+  "input_kind": "pair",
+  "sample_shape": [
+    [
+      128,
+      128,
+      3
+    ],
+    [
+      256,
+      256,
+      3
+    ]
+  ],
+  "sample_dtype": null,
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        128,
+        128
+      ],
+      "dtype": "float32"
+    },
+    {
+      "shape": [
+        1,
+        3,
+        256,
+        256
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/object_tracking_vittrack_2023sep.onnx",
+    "steps": [],
+    "assets": {
+      "sources/object_tracking_vittrack_2023sep.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_tracking_vittrack/object_tracking_vittrack_2023sep.onnx",
+        "sha256": "2990f0b7cd44d92afa48cd97db6de7be113fc1d9594fddb74e2725c10478e91d"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_tracking_vittrack/object_tracking_vittrack_2023sep.onnx"
+}

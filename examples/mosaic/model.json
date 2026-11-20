@@ -1,0 +1,44 @@
+{
+  "id": "mosaic",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/mosaic-rv.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "mosaic"
+      ],
+      [
+        "specialize_style.py",
+        "{work}/sources/mosaic.onnx",
+        "{work}/data/mosaic-rv.onnx"
+      ]
+    ],
+    "assets": {
+      "data/mosaic.onnx": {
+        "sha256": "fa646dedade881243f8d5a2ceb7de2b93675b21fc24f7482894ac4851a9a0a47",
+        "url": "https://media.githubusercontent.com/media/onnx/models/main/validated/vision/style_transfer/fast_neural_style/model/mosaic-9.onnx"
+      }
+    },
+    "requires": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "mobilevit-xs",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        256,
+        256
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 256,
+      "resize": [
+        284
+      ],
+      "interpolation": "bicubic",
+      "mean": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "std": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/mobilevit-xs.onnx",
+    "steps": [
+      [
+        "export_wave3_backbone.py",
+        "{work}",
+        "mobilevit-xs"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/mobilevit_xs.cvnets_in1k"
+}

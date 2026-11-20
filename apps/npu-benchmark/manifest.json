@@ -118,11 +118,11 @@
               "all_installed"
             ],
             "option_labels": [
-              "New architecture families",
+              "New classification models",
               "All installed configurations"
             ],
             "option_labels_zh": [
-              "新增架构，每族一个代表",
+              "新增分类模型",
               "全部已安装配置"
             ]
           },

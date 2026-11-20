@@ -1,0 +1,55 @@
+{
+  "id": "wifi-qda",
+  "input_kind": "array",
+  "sample_shape": [
+    7
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        7
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "mean": [
+      -52.321529388427734,
+      -55.60208511352539,
+      -54.928470611572266,
+      -53.60972213745117,
+      -62.567359924316406,
+      -80.89027404785156,
+      -81.76388549804688
+    ],
+    "std": [
+      11.281689643859863,
+      3.4112675189971924,
+      5.244286060333252,
+      11.402196884155273,
+      8.984524726867676,
+      6.573446273803711,
+      6.4931464195251465
+    ]
+  },
+  "export": {
+    "graph": "sources/wifi-qda.onnx",
+    "steps": [
+      [
+        "train_field_vectors.py",
+        "{work}",
+        "--domain",
+        "wifi"
+      ]
+    ],
+    "assets": {
+      "data/wifi.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/422/wireless+indoor+localization.zip",
+        "sha256": "afb3e4f3674409642e6606e14faf4cb66edc3a8c74034839f1cee4e017c59a4e"
+      }
+    },
+    "requires": []
+  }
+}

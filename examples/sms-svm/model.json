@@ -1,0 +1,33 @@
+{
+  "id": "sms-svm",
+  "input_kind": "text",
+  "sample_shape": [],
+  "sample_dtype": null,
+  "tensors": [
+    {
+      "shape": [
+        1,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/sms-svm.onnx",
+    "steps": [
+      [
+        "train_wave3_supervised.py",
+        "{work}",
+        "spam"
+      ]
+    ],
+    "assets": {
+      "data/sms.zip": {
+        "url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+        "sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3"
+      }
+    },
+    "requires": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "shufflenet-v2",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "uint8"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/shufflenet-v2.onnx",
+    "steps": [
+      [
+        "export_models.py",
+        "{work}/sources"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://download.pytorch.org/models/shufflenetv2_x1-5666bf0f80.pth"
+}

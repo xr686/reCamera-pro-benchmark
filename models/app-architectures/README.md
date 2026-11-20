@@ -29,4 +29,4 @@ These FP16 RKNN binaries were used for the on-device benchmarks. Each linked tim
 | MaxViT | [maxvit](maxvit.rknn) | [maxvit_tiny_tf_224.in1k](https://huggingface.co/timm/maxvit_tiny_tf_224.in1k/blob/041f2cce4d74c7539d63aa9fb85786e78072d487/README.md) |
 | VOLO | [volo](volo.rknn) | [volo_d1_224.sail_in1k](https://huggingface.co/timm/volo_d1_224.sail_in1k/blob/0d1b31899ae4cb562932c62d1d8820c1d796a4f1/README.md) |
 
-The [source index](../../benchmark_results/app/classification-sources.csv) covers all tested classification checkpoints. The [artifact manifest](../../benchmark_results/app/model-hashes.csv) records the SHA-256 for all 270 measured configurations.
+See the [per-model demos](../../examples/MODELS.md) for build and deployment commands. The [source index](../../benchmark_results/app/classification-sources.csv) covers all tested classification checkpoints. The [artifact manifest](../../benchmark_results/app/model-hashes.csv) records the SHA-256 for all 270 measured configurations.

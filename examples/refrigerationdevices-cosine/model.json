@@ -1,0 +1,48 @@
+{
+  "id": "refrigerationdevices-cosine",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    720
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        720
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        1.9603305645432556e-09
+      ],
+      "std": [
+        0.9993053674697876
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/refrigerationdevices-cosine.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "RefrigerationDevices"
+      ]
+    ],
+    "assets": {
+      "data/RefrigerationDevices.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/RefrigerationDevices.zip",
+        "sha256": "26b5cfa664e5b60e4c5bfa43e802f87178c7e175e01a22df125f97764214318d"
+      }
+    },
+    "requires": []
+  }
+}

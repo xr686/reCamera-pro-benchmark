@@ -1,0 +1,47 @@
+{
+  "id": "sig-forda",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    500
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        500
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -4.768371461572052e-11
+      ],
+      "std": [
+        0.9989995360374451
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-forda.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "FordA"
+      ]
+    ],
+    "assets": {
+      "data/FordA.zip": {
+        "sha256": "4d78a72e5165e8da40c51115a8219c9d01978aafac6334ed8dfabd29da359ffb",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/FordA.zip"
+      }
+    },
+    "requires": []
+  }
+}

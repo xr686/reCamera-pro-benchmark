@@ -198,9 +198,10 @@ def texts(work, ds):
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("work", type=Path)
+    p.add_argument("--domain", choices=("wifi", "gridstab", "seeds", "raisins", "sent", "trec"))
     args = p.parse_args()
     torch.set_num_threads(2)
-    for domain in ("wifi", "gridstab", "seeds", "raisins"):
-        vectors(args.work, domain)
-    for domain in ("sent", "trec"):
-        texts(args.work, domain)
+    domains = (args.domain,) if args.domain else ("wifi", "gridstab", "seeds", "raisins", "sent", "trec")
+    for domain in domains:
+        trainer = texts if domain in ("sent", "trec") else vectors
+        trainer(args.work, domain)

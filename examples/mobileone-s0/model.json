@@ -1,0 +1,53 @@
+{
+  "id": "mobileone-s0",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bilinear",
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/mobileone-s0.onnx",
+    "steps": [
+      [
+        "export_timm_suite.py",
+        "{work}",
+        "mobileone-s0"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/mobileone_s0.apple_in1k"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "bayer-linear",
+  "input_kind": "image",
+  "sample_shape": [
+    96,
+    96,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        4,
+        48,
+        48
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/bayer-linear.onnx",
+    "steps": [
+      [
+        "train_wave3_restore.py",
+        "{work}",
+        "{imagenette}"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "imagenette"
+    ]
+  }
+}

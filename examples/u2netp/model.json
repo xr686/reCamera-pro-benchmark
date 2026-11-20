@@ -1,0 +1,39 @@
+{
+  "id": "u2netp",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        320,
+        320
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/u2netp.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "u2netp"
+      ]
+    ],
+    "assets": {
+      "data/u2netp.onnx": {
+        "sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+        "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx"
+      }
+    },
+    "requires": []
+  }
+}

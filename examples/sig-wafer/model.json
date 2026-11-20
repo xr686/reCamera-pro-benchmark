@@ -1,0 +1,47 @@
+{
+  "id": "sig-wafer",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    152
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        152
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        4.2664377586376645e-10
+      ],
+      "std": [
+        0.9967051148414612
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-wafer.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Wafer"
+      ]
+    ],
+    "assets": {
+      "data/Wafer.zip": {
+        "sha256": "06032db83b3f6f3f39ef4b65433061dde9b2593b956caa1ad1ae9ad260a36be4",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Wafer.zip"
+      }
+    },
+    "requires": []
+  }
+}

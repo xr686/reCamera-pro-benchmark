@@ -1,0 +1,38 @@
+{
+  "id": "trec-bnb",
+  "input_kind": "text",
+  "sample_shape": [],
+  "sample_dtype": null,
+  "tensors": [
+    {
+      "shape": [
+        1,
+        512
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/trec-bnb.onnx",
+    "steps": [
+      [
+        "train_field_vectors.py",
+        "{work}",
+        "--domain",
+        "trec"
+      ]
+    ],
+    "assets": {
+      "data/trec-train.txt": {
+        "url": "https://cogcomp.seas.upenn.edu/Data/QA/QC/train_5500.label",
+        "sha256": "9e4c8bdcaffb96ed61041bd64b564183d52793a8e91d84fc3a8646885f466ec3"
+      },
+      "data/trec-test.txt": {
+        "url": "https://cogcomp.seas.upenn.edu/Data/QA/QC/TREC_10.label",
+        "sha256": "033f22c028c2bbba9ca682f68ffe204dc1aa6e1cf35dd6207f2d4ca67f0d0e8e"
+      }
+    },
+    "requires": []
+  }
+}

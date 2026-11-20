@@ -1,0 +1,51 @@
+{
+  "id": "fashion-highway",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        28,
+        28
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/fashion-highway.onnx",
+    "steps": [
+      [
+        "train_wave3_supervised.py",
+        "{work}",
+        "fashion"
+      ]
+    ],
+    "assets": {
+      "data/train-images-idx3-ubyte.gz": {
+        "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/train-images-idx3-ubyte.gz",
+        "sha256": "3aede38d61863908ad78613f6a32ed271626dd12800ba2636569512369268a84"
+      },
+      "data/train-labels-idx1-ubyte.gz": {
+        "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/train-labels-idx1-ubyte.gz",
+        "sha256": "a04f17134ac03560a47e3764e11b92fc97de4d1bfaf8ba1a3aa29af54cc90845"
+      },
+      "data/t10k-images-idx3-ubyte.gz": {
+        "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/t10k-images-idx3-ubyte.gz",
+        "sha256": "346e55b948d973a97e58d2351dde16a484bd415d4595297633bb08f03db6a073"
+      },
+      "data/t10k-labels-idx1-ubyte.gz": {
+        "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/t10k-labels-idx1-ubyte.gz",
+        "sha256": "67da17c76eaffca5446c3361aaab5c3cd6d1c2608764d35dfb1850b086bf8dd5"
+      }
+    },
+    "requires": []
+  }
+}

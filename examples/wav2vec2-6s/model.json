@@ -1,0 +1,32 @@
+{
+  "id": "wav2vec2-6s",
+  "input_kind": "array",
+  "sample_shape": [
+    93680
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        96000
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://huggingface.co/facebook/wav2vec2-base-960h",
+  "export": {
+    "graph": "sources/wav2vec2-6s.onnx",
+    "requires": [],
+    "assets": {},
+    "steps": [
+      [
+        "export_wav2vec2.py",
+        "facebook/wav2vec2-base-960h",
+        "22aad52d435eb6dbaf354bdad9b0da84ce7d6156",
+        "{work}/sources/wav2vec2-6s.onnx"
+      ]
+    ]
+  }
+}

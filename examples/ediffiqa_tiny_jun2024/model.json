@@ -1,0 +1,34 @@
+{
+  "id": "ediffiqa_tiny_jun2024",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        112,
+        112
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/ediffiqa_tiny_jun2024.onnx",
+    "steps": [],
+    "assets": {
+      "sources/ediffiqa_tiny_jun2024.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/face_image_quality_assessment_ediffiqa/ediffiqa_tiny_jun2024.onnx",
+        "sha256": "9426c899cc0f01665240cb7d9e7f98e18e24e456c178326c771a43da289bfc6a"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/face_image_quality_assessment_ediffiqa/ediffiqa_tiny_jun2024.onnx"
+}

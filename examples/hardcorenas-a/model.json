@@ -1,0 +1,54 @@
+{
+  "id": "hardcorenas-a",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bilinear",
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/hardcorenas-a.onnx",
+    "steps": [
+      [
+        "build_sequence_backbones.py",
+        "{work}",
+        "--export",
+        "hardcorenas-a"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/hardcorenas_a.miil_green_in1k"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "mobilenetv4-small",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "transform": {
+      "size": 224,
+      "resize": [
+        256
+      ],
+      "interpolation": "bicubic",
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/mobilenetv4-small.onnx",
+    "steps": [
+      [
+        "build_sequence_backbones.py",
+        "{work}",
+        "--export",
+        "mobilenetv4-small"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  },
+  "source": "https://huggingface.co/timm/mobilenetv4_conv_small.e1200_r224_in1k"
+}

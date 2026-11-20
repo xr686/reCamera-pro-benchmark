@@ -1,4 +1,4 @@
-family,id,checkpoint,source,model_card,card_license,rknn_in_repo
+model,id,checkpoint,source,model_card,card_license,rknn_in_repo
 ResNet,resnet18,ResNet-18 IMAGENET1K_V1,https://download.pytorch.org/models/resnet18-f37072fd.pth,,,
 ResNet,resnext50_32x4d,ResNeXt50_32X4D_Weights.IMAGENET1K_V2,https://download.pytorch.org/models/resnext50_32x4d-1a0047aa.pth,,,
 ResNet,skresnet,skresnet18.ra_in1k,https://huggingface.co/timm/skresnet18.ra_in1k,https://huggingface.co/timm/skresnet18.ra_in1k/blob/556ba2012f3470fd43feba5a4841a49827ae3998/README.md,apache-2.0,

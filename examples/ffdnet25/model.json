@@ -1,0 +1,39 @@
+{
+  "id": "ffdnet25",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        128,
+        128
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/ffdnet25.onnx",
+    "steps": [
+      [
+        "export_specialists.py",
+        "{work}",
+        "ffdnet25"
+      ]
+    ],
+    "assets": {
+      "data/ffdnet_color_clip.pth": {
+        "sha256": "99a5081e32afdaa25df3ded11aa16447556692e550906caed320db31324af5ce",
+        "url": "https://github.com/cszn/KAIR/releases/download/v1.0/ffdnet_color_clip.pth"
+      }
+    },
+    "requires": []
+  }
+}

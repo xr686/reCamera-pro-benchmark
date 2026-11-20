@@ -1,0 +1,31 @@
+{
+  "id": "dtmf-filter",
+  "input_kind": "array",
+  "sample_shape": [
+    1024
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        1024
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/dtmf-filter.onnx",
+    "steps": [
+      [
+        "build_field_audio.py",
+        "{work}"
+      ]
+    ],
+    "assets": {},
+    "requires": []
+  }
+}

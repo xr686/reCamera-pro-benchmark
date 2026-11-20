@@ -1,0 +1,48 @@
+{
+  "id": "arrowhead-cosine",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    251
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        251
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        2.110832897361803e-10
+      ],
+      "std": [
+        0.9980059862136841
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/arrowhead-cosine.onnx",
+    "steps": [
+      [
+        "train_sequence_models.py",
+        "{work}",
+        "--dataset",
+        "ArrowHead"
+      ]
+    ],
+    "assets": {
+      "data/ArrowHead.zip": {
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/ArrowHead.zip",
+        "sha256": "790a51e664c347df1e931ffc63afc93b1e718ff75c146e7a2d5c669e51b037c4"
+      }
+    },
+    "requires": []
+  }
+}

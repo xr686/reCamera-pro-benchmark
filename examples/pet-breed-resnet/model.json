@@ -1,0 +1,36 @@
+{
+  "id": "pet-breed-resnet",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        160,
+        160
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "sources/pet-breed-resnet.onnx",
+    "steps": [
+      [
+        "train_sequence_pets.py",
+        "{work}",
+        "{pet_archive}"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "pet_archive"
+    ]
+  }
+}

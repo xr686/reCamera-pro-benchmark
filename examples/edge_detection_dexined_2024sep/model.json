@@ -1,0 +1,40 @@
+{
+  "id": "edge_detection_dexined_2024sep",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        480,
+        640
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/edge_detection_dexined_2024sep-fold.onnx",
+    "steps": [
+      [
+        "fold_weights.py",
+        "{work}/sources/edge_detection_dexined_2024sep.onnx",
+        "{work}/data/edge_detection_dexined_2024sep-fold.onnx"
+      ]
+    ],
+    "assets": {
+      "sources/edge_detection_dexined_2024sep.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/edge_detection_dexined/edge_detection_dexined_2024sep.onnx",
+        "sha256": "a50d01dc8481549c7dedb9eb3e0123b810a016520df75e4669a504609982cdd0"
+      }
+    },
+    "requires": []
+  },
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/edge_detection_dexined/edge_detection_dexined_2024sep.onnx"
+}

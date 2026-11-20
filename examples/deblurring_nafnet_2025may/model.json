@@ -1,0 +1,54 @@
+{
+  "id": "deblurring_nafnet_2025may",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        384,
+        384
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/deblurring_nafnet/deblurring_nafnet_2025may.onnx",
+  "conversion_note": "需要先按 1×3×384×384 静态化，再运行 specialize_naf_pool.py；详见基准应用 README。",
+  "export": {
+    "graph": "data/naf-ready.onnx",
+    "requires": [],
+    "assets": {
+      "sources/deblurring_nafnet_2025may.onnx": {
+        "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/deblurring_nafnet/deblurring_nafnet_2025may.onnx",
+        "sha256": "07263f416febecce10193dd648e950b22e397cf521eedab1a114ef77b2bc9587"
+      }
+    },
+    "steps": [
+      [
+        "fold_weights.py",
+        "{work}/sources/deblurring_nafnet_2025may.onnx",
+        "{work}/data/naf-folded.onnx"
+      ],
+      [
+        "-m",
+        "onnxsim",
+        "{work}/data/naf-folded.onnx",
+        "{work}/data/naf-static.onnx",
+        "--overwrite-input-shape",
+        "lq:1,3,384,384"
+      ],
+      [
+        "specialize_naf_pool.py",
+        "{work}/data/naf-static.onnx",
+        "{work}/data/naf-ready.onnx"
+      ]
+    ]
+  }
+}

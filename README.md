@@ -11,7 +11,7 @@ NPU/CPU clocks pinned to their top OPPs.
 
 ## RV1126B application benchmarks
 
-The firmware V1.3.2 application suite covers **270 measured configurations across 100 task labels**. The 59 ImageNet classifier configurations represent **50 backbone families** after grouping variants. The CSV records batch-one Python application timings, sample counts, quality metrics and artifact hashes. The native YOLO tables below use their own timing protocol. [Benchmark guide](benchmark_results/app/README.md) · [Architecture index](benchmark_results/app/RV1126B-ImageNet-family-index.csv) · [Test app](apps/npu-benchmark/README.md) · [RKNN downloads](models/app-architectures/README.md)
+The firmware V1.3.2 application suite covers **270 measured configurations across 100 task labels**. The 59 ImageNet classifier configurations represent **50 representative models** after grouping variants. The CSV records batch-one Python application timings, sample counts, quality metrics and artifact hashes. The native YOLO tables below use their own timing protocol. [Per-model app demos](examples/README.md) · [Benchmark guide](benchmark_results/app/README.md) · [Model index](benchmark_results/app/RV1126B-ImageNet-model-index.csv) · [Test app](apps/npu-benchmark/README.md) · [RKNN downloads](models/app-architectures/README.md)
 
 ---
 

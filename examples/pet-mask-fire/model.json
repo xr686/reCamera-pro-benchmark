@@ -1,0 +1,41 @@
+{
+  "id": "pet-mask-fire",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        3,
+        96,
+        96
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "export": {
+    "graph": "data/pet-mask-fire-rv.onnx",
+    "steps": [
+      [
+        "train_sequence_pets.py",
+        "{work}",
+        "{pet_archive}"
+      ],
+      [
+        "lower_pyramid_resize.py",
+        "{work}/sources/pet-mask-fire.onnx",
+        "{work}/data/pet-mask-fire-rv.onnx"
+      ]
+    ],
+    "assets": {},
+    "requires": [
+      "pet_archive"
+    ]
+  }
+}

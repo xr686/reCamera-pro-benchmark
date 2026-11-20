@@ -1,0 +1,50 @@
+{
+  "id": "mlsd",
+  "input_kind": "image",
+  "sample_shape": [
+    256,
+    256,
+    3
+  ],
+  "sample_dtype": "uint8",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        320,
+        320,
+        4
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {},
+  "source": "https://raw.githubusercontent.com/navervision/mlsd/master/tflite_models/M-LSD_320_tiny_fp32.tflite",
+  "export": {
+    "graph": "sources/mlsd.onnx",
+    "requires": [],
+    "assets": {
+      "data/mlsd.tflite": {
+        "sha256": "b17de2b4b4754d563c47b29b4132aceb39d40d079c0b9154ec0932b5292ec11f",
+        "url": "https://raw.githubusercontent.com/navervision/mlsd/master/tflite_models/M-LSD_320_tiny_fp32.tflite"
+      }
+    },
+    "steps": [
+      [
+        "-m",
+        "tf2onnx.convert",
+        "--tflite",
+        "{work}/data/mlsd.tflite",
+        "--opset",
+        "13",
+        "--output",
+        "{work}/data/mlsd-full.onnx"
+      ],
+      [
+        "export_mlsd_heads.py",
+        "{work}/data/mlsd-full.onnx",
+        "{work}/sources/mlsd.onnx"
+      ]
+    ]
+  }
+}

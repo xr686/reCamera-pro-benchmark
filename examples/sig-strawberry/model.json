@@ -1,0 +1,47 @@
+{
+  "id": "sig-strawberry",
+  "input_kind": "array",
+  "sample_shape": [
+    1,
+    235
+  ],
+  "sample_dtype": "float32",
+  "tensors": [
+    {
+      "shape": [
+        1,
+        1,
+        1,
+        235
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "metadata": {
+    "normalization": {
+      "mean": [
+        -5.29616794864296e-10
+      ],
+      "std": [
+        0.9978700876235962
+      ]
+    }
+  },
+  "export": {
+    "graph": "sources/sig-strawberry.onnx",
+    "steps": [
+      [
+        "train_signal_suite.py",
+        "{work}",
+        "Strawberry"
+      ]
+    ],
+    "assets": {
+      "data/Strawberry.zip": {
+        "sha256": "1293ba770d15817be769958f077cab6f76d65a66465aff80ed393d1e80a71e00",
+        "url": "https://www.timeseriesclassification.com/aeon-toolkit/Strawberry.zip"
+      }
+    },
+    "requires": []
+  }
+}
