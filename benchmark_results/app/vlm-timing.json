@@ -1,0 +1,69 @@
+{
+  "SmolVLM-256M-Instruct": [
+    {
+      "vision_ms": 1670,
+      "decode_ms": 1853
+    },
+    {
+      "vision_ms": 1588,
+      "decode_ms": 1657
+    },
+    {
+      "vision_ms": 1694,
+      "decode_ms": 1891
+    },
+    {
+      "vision_ms": 1591,
+      "decode_ms": 1738
+    },
+    {
+      "vision_ms": 1611,
+      "decode_ms": 1694
+    },
+    {
+      "vision_ms": 1589,
+      "decode_ms": 1683
+    },
+    {
+      "vision_ms": 1589,
+      "decode_ms": 1684
+    },
+    {
+      "vision_ms": 1587,
+      "decode_ms": 1680
+    },
+    {
+      "vision_ms": 1570,
+      "decode_ms": 1653
+    },
+    {
+      "vision_ms": 1573,
+      "decode_ms": 1657
+    },
+    {
+      "vision_ms": 1574,
+      "decode_ms": 1701
+    },
+    {
+      "vision_ms": 1598,
+      "decode_ms": 1656
+    }
+  ],
+  "InternVL3-1B": {
+    "captions": 5,
+    "first_text_ms": {
+      "median": 12769,
+      "min": 12232,
+      "max": 14004
+    },
+    "full_ms": {
+      "median": 16434,
+      "min": 15657,
+      "max": 16846
+    },
+    "partial_updates": {
+      "min": 14,
+      "max": 21
+    }
+  }
+}

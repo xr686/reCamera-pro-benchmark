@@ -1,0 +1,3 @@
+reCamera Pro NPU benchmark application
+Adapted from the reCamera Pro Extension API application workspace (Apache-2.0).
+Model checkpoints and evaluation datasets retain their upstream terms.
